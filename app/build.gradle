@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion   rootProject.ext.compileSdkVersion
-    buildToolsVersion   rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId       rootProject.ext.applicationId
-        minSdkVersion       rootProject.ext.minSdkVersion
-        targetSdkVersion    rootProject.ext.targetSdkVersion
-        versionCode         rootProject.ext.versionCode
-        versionName         rootProject.ext.versionName
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -18,7 +18,7 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled true
     }
 
@@ -27,9 +27,21 @@ android {
         sourceCompatibility 1.8
     }
 
+    signingConfigs {
+        step2hell {
+            storeFile file('step2hell.jks')
+            storePassword STORE_PASSWORD
+            keyAlias 'step2hell'
+            keyPassword KEY_PASSWORD
+        }
+    }
+
+
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.step2hell
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
