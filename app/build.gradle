@@ -13,19 +13,23 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        jackOptions {
-            enabled true
-        }
+
+        /**
+         * Java 1.8 needs jack, but jack is too slow.
+         */
+//        jackOptions {
+//            enabled true
+//        }
     }
 
     dataBinding {
         enabled true
     }
 
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
+//    compileOptions {
+//        targetCompatibility 1.8
+//        sourceCompatibility 1.8
+//    }
 
     signingConfigs {
         step2hell {
@@ -38,10 +42,23 @@ android {
 
 
     buildTypes {
+        debug {
+            minifyEnabled false
+        }
         release {
             signingConfig signingConfigs.step2hell
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            zipAlignEnabled true
+            /**
+             * 1. minifyEnabled=true was asked before shrinkResources=true
+             * 2. shrinkResources does not work with jack yet.
+             * https://stackoverflow.com/questions/39592035/cant-use-shrinkresources-res-resources-prod-release-stripped-ap-specified-fo
+             * https://code.google.com/p/android/issues/detail?id=223254
+             * https://stackoverflow.com/questions/36540676/build-intermediates-res-resources-anzhi-debug-stripped-ap-specified-for-prope
+             * https://developer.android.com/studio/build/shrink-code.html#shrink-resources
+             */
+//            minifyEnabled true
+//            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
