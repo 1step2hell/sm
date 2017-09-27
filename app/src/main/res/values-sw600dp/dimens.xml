@@ -1,0 +1,7 @@
+<resources>
+    <!--Main Activity-->
+    <dimen name="drawerlayout_width">512dp</dimen>
+    <dimen name="drawer_header_height">400dp</dimen>
+    <dimen name="drawer_header_icon_width">160dp</dimen>
+    <dimen name="drawer_header_icon_margin">32dp</dimen>
+</resources>

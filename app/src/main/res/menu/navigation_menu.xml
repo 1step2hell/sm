@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/settings">
+        <item
+            android:id="@+id/navigation_preference"
+            android:icon="@drawable/ic_btn_preference"
+            android:title="@string/navigation_preference"
+            app:showAsAction="ifRoom|withText" />
+        <item
+            android:id="@+id/navigation_menu1"
+            android:icon="@drawable/ic_btn_soundvibration"
+            android:title="@string/navigation_menu1"
+            app:showAsAction="ifRoom|withText" />
+        <item
+            android:id="@+id/navigation_menu2"
+            android:icon="@drawable/ic_btn_textcorrect"
+            android:title="@string/navigation_menu2"
+            app:showAsAction="ifRoom|withText" />
+    </group>
+
+    <group android:id="@+id/others">
+        <item
+            android:id="@+id/navigation_menu3"
+            android:icon="@drawable/ic_btn_rateus"
+            android:title="@string/navigation_menu3"
+            app:showAsAction="ifRoom|withText" />
+        <item
+            android:id="@+id/navigation_menu4"
+            android:icon="@drawable/ic_btn_feedback"
+            android:title="@string/navigation_menu4"
+            app:showAsAction="ifRoom|withText" />
+        <item
+            android:id="@+id/navigation_about"
+            android:icon="@drawable/ic_btn_about"
+            android:title="@string/navigation_about"
+            app:showAsAction="ifRoom|withText" />
+    </group>
+
+</menu>
