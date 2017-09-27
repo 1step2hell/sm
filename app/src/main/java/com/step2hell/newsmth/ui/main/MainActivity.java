@@ -1,18 +1,16 @@
 package com.step2hell.newsmth.ui.main;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.BaseActivity;
@@ -85,8 +83,7 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.navigation_menu3:
                     title = getString(R.string.navigation_menu3);
-                    mDrawerLayout.closeDrawer(mNavigationView);
-                    return;
+                    break;
                 case R.id.navigation_menu4:
                     title = getString(R.string.navigation_menu4);
                     break;
@@ -129,25 +126,16 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private boolean mIsExit;
-
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mIsExit) {
-                finish();
-            } else {
-                Toast.makeText(this, getString(R.string.toast_exit), Toast.LENGTH_SHORT).show();
-                mIsExit = true;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mIsExit = false;
-                    }
-                }, 2000);
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent != null) {
+            boolean isExit = intent.getBooleanExtra(TAG_EXIT, false);
+            if (isExit) {
+                firstTapTime = 0;
+                this.finish();
             }
-            return true;
         }
-        return super.onKeyDown(keyCode, event);
     }
+
 }
