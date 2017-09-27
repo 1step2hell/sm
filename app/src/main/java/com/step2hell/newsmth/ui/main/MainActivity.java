@@ -1,14 +1,18 @@
 package com.step2hell.newsmth.ui.main;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.BaseActivity;
@@ -93,8 +97,57 @@ public class MainActivity extends BaseActivity {
                     title = null;
                     break;
             }
-            Log.e("Bob","title:"+title);
+            Log.e("Bob", "title:" + title);
             mDrawerLayout.closeDrawers();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
+            mDrawerLayout.closeDrawer(mNavigationView);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    private boolean mIsExit;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mIsExit) {
+                finish();
+            } else {
+                Toast.makeText(this, getString(R.string.toast_exit), Toast.LENGTH_SHORT).show();
+                mIsExit = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mIsExit = false;
+                    }
+                }, 2000);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

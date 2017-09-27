@@ -12,4 +12,6 @@
     <string name="drawer_open">Menu open</string>
     <string name="drawer_close">Menu close</string>
 
+    <string name="toast_exit">Tap again to exist program</string>
+
 </resources>
