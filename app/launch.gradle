@@ -36,7 +36,7 @@ android.applicationVariants.all { variant ->
             def packageName = appId + appIdSuffix
 
             // launch activity
-            def launchActivity = 'com.step2hell.newsmth.MainActivity'
+            def launchActivity = 'com.step2hell.newsmth.ui.main.MainActivity'
             def startupClass = packageName + '/' + launchActivity
 
             exec {

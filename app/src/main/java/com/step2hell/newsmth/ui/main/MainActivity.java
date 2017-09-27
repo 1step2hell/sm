@@ -1,9 +1,11 @@
-package com.step2hell.newsmth;
+package com.step2hell.newsmth.ui.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.step2hell.newsmth.R;
+import com.step2hell.newsmth.ui.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
