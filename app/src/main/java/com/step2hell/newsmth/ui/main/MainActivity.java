@@ -81,6 +81,7 @@ public class MainActivity extends BaseActivity {
             }
             Log.e("Bob", "title:" + title);
             mDrawerLayout.closeDrawers();
+            startActivity(new Intent(MainActivity.this,AdvActivity.class));
         }
     }
 
