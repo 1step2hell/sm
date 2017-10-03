@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    android:id="@+id/appbar_layout"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <com.step2hell.newsmth.widget.TitleCenterInsideToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <!--<android.support.design.widget.CollapsingToolbarLayout-->
+        <!--android:id="@+id/toolbar_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:expandedTitleGravity="center"-->
+        <!--app:collapsedTitleGravity="center"-->
+        <!--app:contentScrim="?attr/colorPrimary"-->
+        <!--app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"-->
+        <!--app:statusBarScrim="@android:color/transparent">-->
+
+        <com.step2hell.newsmth.widget.TitleCenterInsideToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <!--</android.support.design.widget.CollapsingToolbarLayout>-->
 
 </android.support.design.widget.AppBarLayout>
