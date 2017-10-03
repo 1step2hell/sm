@@ -5,17 +5,17 @@
     <group android:id="@+id/settings">
         <item
             android:id="@+id/navigation_preference"
-            android:icon="@drawable/ic_btn_preference"
+            android:icon="@drawable/ic_menu_camera"
             android:title="@string/navigation_preference"
             app:showAsAction="ifRoom|withText" />
         <item
             android:id="@+id/navigation_menu1"
-            android:icon="@drawable/ic_btn_soundvibration"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/navigation_menu1"
             app:showAsAction="ifRoom|withText" />
         <item
             android:id="@+id/navigation_menu2"
-            android:icon="@drawable/ic_btn_textcorrect"
+            android:icon="@drawable/ic_menu_manage"
             android:title="@string/navigation_menu2"
             app:showAsAction="ifRoom|withText" />
     </group>
@@ -23,17 +23,17 @@
     <group android:id="@+id/others">
         <item
             android:id="@+id/navigation_menu3"
-            android:icon="@drawable/ic_btn_rateus"
+            android:icon="@drawable/ic_menu_send"
             android:title="@string/navigation_menu3"
             app:showAsAction="ifRoom|withText" />
         <item
             android:id="@+id/navigation_menu4"
-            android:icon="@drawable/ic_btn_feedback"
+            android:icon="@drawable/ic_menu_share"
             android:title="@string/navigation_menu4"
             app:showAsAction="ifRoom|withText" />
         <item
             android:id="@+id/navigation_about"
-            android:icon="@drawable/ic_btn_about"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_about"
             app:showAsAction="ifRoom|withText" />
     </group>

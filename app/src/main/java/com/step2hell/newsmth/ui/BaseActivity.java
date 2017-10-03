@@ -10,7 +10,7 @@ import com.step2hell.newsmth.widget.TitleCenterInsideToolbar;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private TitleCenterInsideToolbar mToolbar;
+    protected TitleCenterInsideToolbar mToolbar;
 
     public void initToolbar() {
         mToolbar = (TitleCenterInsideToolbar) findViewById(R.id.toolbar);

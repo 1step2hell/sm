@@ -9,8 +9,8 @@
     <string name="navigation_menu4" translatable="false">menu4</string>
     <string name="navigation_about" translatable="false">About</string>
 
-    <string name="drawer_open" translatable="false">Menu open</string>
-    <string name="drawer_close" translatable="false">Menu close</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="toast_exit">Tap again to exit</string>
 

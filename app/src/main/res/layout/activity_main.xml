@@ -9,34 +9,17 @@
     android:fitsSystemWindows="true"
     tools:context="com.step2hell.newsmth.ui.main.MainActivity">
 
-    <LinearLayout
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include layout="@layout/toolbar" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_activity_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/colorAccent"
-            app:tabSelectedTextColor="@color/colorAccent" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager_activity_main"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/background_gradient" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/main_navigation"
-        android:layout_width="@dimen/drawerlayout_width"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/navigation_background"
-        app:headerLayout="@layout/navigation_header"
+        app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/navigation_menu" />
 </android.support.v4.widget.DrawerLayout>

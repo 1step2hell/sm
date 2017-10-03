@@ -34,30 +34,15 @@ public class MainActivity extends BaseActivity {
 
     private void initDrawerNavigation() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        mNavigationView = (NavigationView) findViewById(R.id.main_navigation);
-
 //        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
 //        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
 
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.string.drawer_open,           /* "open drawer" description */
-                R.string.drawer_close           /* "close drawer" description */) {
-
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                ActivityCompat.invalidateOptionsMenu(MainActivity.this);// creates call to onPrepareOptionsMenu()
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                ActivityCompat.invalidateOptionsMenu(MainActivity.this);// creates call to onPrepareOptionsMenu()
-            }
-        };
-
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        mNavigationView = (NavigationView) findViewById(R.id.main_navigation);
         mNavigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
     }
 
