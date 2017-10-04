@@ -22,24 +22,20 @@ public class DataModel implements IDataModel {
 
     @Override
     public Observable<AdvBean> getAdv() {
-
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl(URL_NEWSMTH)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        NewsmthInterface service = retrofit.create(NewsmthInterface.class);
-        Observable<AdvBean> observable = service.requestNewsmth()
+                .build()
+                .create(NewsmthInterface.class)
+                .requestNewsmth()
                 .subscribeOn(Schedulers.newThread())
                 .map(new Function<ResponseBody, AdvBean>() {
                     @Override
                     public AdvBean apply(@NonNull ResponseBody responseBody) throws Exception {
-                        String jsonStr = HtmlUtil.getSubSimple(responseBody.string(), REG_PREIMG);
-                        AdvBean bean = new Gson().fromJson(jsonStr, AdvBean.class);
-                        return bean;
+                        return new Gson().fromJson(HtmlUtil.getSubSimple(responseBody.string(), REG_PREIMG), AdvBean.class);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread());
-        return observable;
     }
 
     interface NewsmthInterface {
