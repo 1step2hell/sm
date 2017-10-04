@@ -5,11 +5,14 @@ import com.step2hell.newsmth.model.bean.AdvBean;
 import com.step2hell.newsmth.util.HtmlUtil;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.http.GET;
 
 
 public class DataModel implements IDataModel {
@@ -20,38 +23,27 @@ public class DataModel implements IDataModel {
     @Override
     public Observable<AdvBean> getAdv() {
 
-        Observable<AdvBean> observable = Observable.create(new ObservableOnSubscribe<AdvBean>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<AdvBean> e) throws Exception {
-                try {
-                    String ioStr = HtmlUtil.getHTML(URL_NEWSMTH);
-                    String jsonStr = HtmlUtil.getSubSimple(ioStr, REG_PREIMG);
-                    AdvBean bean = new Gson().fromJson(jsonStr, AdvBean.class);
-                    e.onNext(bean);
-                    e.onComplete();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                    e.onComplete();
-                }
-            }
-        }).subscribeOn(Schedulers.newThread());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_NEWSMTH)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        NewsmthInterface service = retrofit.create(NewsmthInterface.class);
+        Observable<AdvBean> observable = service.requestNewsmth()
+                .subscribeOn(Schedulers.newThread())
+                .map(new Function<ResponseBody, AdvBean>() {
+                    @Override
+                    public AdvBean apply(@NonNull ResponseBody responseBody) throws Exception {
+                        String jsonStr = HtmlUtil.getSubSimple(responseBody.string(), REG_PREIMG);
+                        AdvBean bean = new Gson().fromJson(jsonStr, AdvBean.class);
+                        return bean;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread());
         return observable;
+    }
 
-//        Observable<AdvBean> observable = new Observable<AdvBean>() {
-//            @Override
-//            protected void subscribeActual(Observer<? super AdvBean> observer) {
-//                try {
-//                    String ioStr = HtmlUtil.getHTML(URL_NEWSMTH);
-//                    String jsonStr = HtmlUtil.getSubSimple(ioStr,REG_PREIMG);
-//                    AdvBean bean = new Gson().fromJson(jsonStr,AdvBean.class);
-//                    observer.onNext(bean);
-//                    observer.onComplete();
-//                } catch (Exception exception) {
-//                    exception.printStackTrace();
-//                    observer.onComplete();
-//                }
-//            }
-//        }.subscribeOn(Schedulers.newThread());
-//        return observable;
+    interface NewsmthInterface {
+        @GET("/")
+        Observable<ResponseBody> requestNewsmth();
     }
 }
