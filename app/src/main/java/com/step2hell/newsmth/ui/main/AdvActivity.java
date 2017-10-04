@@ -57,7 +57,7 @@ public class AdvActivity extends BaseActivity {
     }
 
     private void bind() {
-        disposable.add(mViewModel.getAdv().observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<AdvBean>() {
+        disposable.add(mViewModel.getAdv().subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull AdvBean advBean) throws Exception {
                 setAdvImg(advBean);
