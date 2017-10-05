@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.model.bean.AdvBean;
-import com.step2hell.newsmth.model.datamodel.DataModel;
 import com.step2hell.newsmth.model.viewmodel.ViewModel;
 import com.step2hell.newsmth.ui.BaseActivity;
 
@@ -20,9 +19,8 @@ import io.reactivex.functions.Consumer;
 
 
 public class AdvActivity extends BaseActivity {
-    private CompositeDisposable disposable;
 
-    private ViewModel mViewModel;
+    private CompositeDisposable disposable;
 
     private ImageView advImg;
 
@@ -35,7 +33,6 @@ public class AdvActivity extends BaseActivity {
 
         // Todo: 判断网络先
         disposable = new CompositeDisposable();
-        mViewModel = new ViewModel(DataModel.ADV);
         setupViews();
     }
 
@@ -56,7 +53,7 @@ public class AdvActivity extends BaseActivity {
     }
 
     private void bind() {
-        disposable.add(mViewModel.fetchData().subscribe(new Consumer<AdvBean>() {
+        disposable.add(ViewModel.getInstance().fetchAdv().subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull AdvBean advBean) throws Exception {
                 setAdvImg(advBean);
