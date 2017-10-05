@@ -14,7 +14,6 @@ import com.step2hell.newsmth.model.datamodel.DataModel;
 import com.step2hell.newsmth.model.viewmodel.ViewModel;
 import com.step2hell.newsmth.ui.BaseActivity;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -36,7 +35,7 @@ public class AdvActivity extends BaseActivity {
 
         // Todo: 判断网络先
         disposable = new CompositeDisposable();
-        mViewModel = new ViewModel(new DataModel());
+        mViewModel = new ViewModel(DataModel.ADV);
         setupViews();
     }
 
@@ -57,7 +56,7 @@ public class AdvActivity extends BaseActivity {
     }
 
     private void bind() {
-        disposable.add(mViewModel.getAdv().subscribe(new Consumer<AdvBean>() {
+        disposable.add(mViewModel.fetchData().subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull AdvBean advBean) throws Exception {
                 setAdvImg(advBean);
