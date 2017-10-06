@@ -21,6 +21,7 @@ public class ViewModel {
     /**
      * 静态内部类单例模式
      * 不使用枚举单例是因为枚举不支持继承,后续使用Databinding,需要ViewModel继承BaseObservable.
+     * 如果不需要继承,则可以直接使用枚举单例模式,并把DataModel功能移过来并移除掉DataModel(变成一个纯净的MVVM模式).
      */
     private static class LazyHolder {
         private final static ViewModel INSTANCE = new ViewModel();
@@ -31,11 +32,6 @@ public class ViewModel {
     }
 
 
-    /**
-     * 获取进站广告
-     *
-     * @return
-     */
     public Observable<AdvBean> fetchAdv() {
         return DataModel.ADV.fetch();
     }
@@ -45,14 +41,14 @@ public class ViewModel {
         observable.subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull final AdvBean bean) throws Exception {
-                RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.mipmap.ic_launcher)
-                        .transform(new RoundedCorners(8));
                 Glide.with(view.getContext())
                         .load(bean.getFile())
-                        .apply(options)
+                        .apply(new RequestOptions()
+                                .fitCenter()
+                                .placeholder(R.mipmap.ic_launcher)
+                                .transform(new RoundedCorners(1 << 3)))
                         .into(view);
+
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
