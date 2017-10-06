@@ -1,12 +1,11 @@
 package com.step2hell.newsmth.model.bean;
 
-/**
- * Created by bob on 10/4/17.
- */
 
 public class AdvBean {
-    String url;
-    String file;
+    private final static String PREFIX = "http://images.newsmth.net/nForum";
+
+    private String url;
+    private String file;
 
     public String getUrl() {
         return url;
@@ -17,7 +16,7 @@ public class AdvBean {
     }
 
     public String getFile() {
-        return file;
+        return PREFIX + file;
     }
 
     public void setFile(String file) {

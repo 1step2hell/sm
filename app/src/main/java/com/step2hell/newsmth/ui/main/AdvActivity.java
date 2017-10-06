@@ -29,7 +29,7 @@ public class AdvActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adv);
 
-        initToolbar();
+        setupToolbar();
 
         // Todo: 判断网络先
         disposable = new CompositeDisposable();
@@ -72,7 +72,7 @@ public class AdvActivity extends BaseActivity {
                 .placeholder(R.mipmap.ic_launcher)
                 .transform(new RoundedCorners(8));
         Glide.with(this)
-                .load("http://images.newsmth.net/nForum" + bean.getFile())
+                .load(bean.getFile())
                 .apply(options)
                 .into(advImg);
         advImg.setOnClickListener(new View.OnClickListener() {

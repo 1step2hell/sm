@@ -12,7 +12,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected TitleCenterInsideToolbar mToolbar;
 
-    public void initToolbar() {
+    public void setupToolbar() {
         mToolbar = (TitleCenterInsideToolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
