@@ -1,10 +1,12 @@
 package com.step2hell.newsmth.ui.main;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.BaseActivity;
+import com.step2hell.newsmth.ui.SettingsActivity;
 
 /**
  * Todo: MVVM, Design main page.
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity {
 
         mNavigationView = (NavigationView) findViewById(R.id.main_navigation);
         mNavigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
+        mNavigationView.setItemIconTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorAccent)));
     }
 
     /* The click listner for item of NavigationView */
@@ -79,7 +83,7 @@ public class MainActivity extends BaseActivity {
             }
             Log.e("Bob", "title:" + title);
             mDrawerLayout.closeDrawers();
-            startActivity(new Intent(MainActivity.this,AdvActivity.class));
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
     }
 

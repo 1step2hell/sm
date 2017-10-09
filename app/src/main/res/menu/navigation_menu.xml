@@ -38,4 +38,21 @@
             app:showAsAction="ifRoom|withText" />
     </group>
 
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/navigation_menu3"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/navigation_menu5"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/navigation_menu3"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/navigation_menu6"
+        android:icon="@drawable/ic_update_black_24dp"
+        android:title="@string/navigation_menu4"
+        app:showAsAction="ifRoom|withText" />
+
 </menu>
