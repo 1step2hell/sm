@@ -30,4 +30,10 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_add_friends_to_messages" />
 
+
+    <Preference
+        android:key="test_jump"
+        android:title="test preference click jump"
+        android:summary="点我跳转到详情页面(临时跳转到广告页面)"/>
+
 </PreferenceScreen>
