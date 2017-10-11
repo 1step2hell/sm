@@ -1,3 +1,14 @@
 <resources>
 
+    <string-array name="visit_mode_list_titles">
+        <item>nForum</item>
+        <item>www2</item>
+    </string-array>
+
+    <!--entryValues of ListPreference must be string-array-->
+    <string-array name="visit_mode_list_values">
+        <item>@string/visit_mode_nforum</item>
+        <item>@string/visit_mode_www2</item>
+    </string-array>
+
 </resources>

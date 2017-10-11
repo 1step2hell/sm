@@ -1,10 +1,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="@string/visit_mode_default"
+        android:entries="@array/visit_mode_list_titles"
+        android:entryValues="@array/visit_mode_list_values"
+        android:key="@string/visit_mode_key"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="%s"
+        android:title="@string/visit_mode_title" />
+
     <com.step2hell.newsmth.widget.SwitchPreference
-        android:defaultValue="true"
-        android:key="example_switch"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
+        android:defaultValue="@bool/night_mode_default"
+        android:key="@string/night_mode_key"
+        android:summaryOff="@string/night_mode_summary_off"
+        android:summaryOn="@string/night_mode_summary_on"
+        android:title="@string/night_mode_title" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
@@ -18,22 +32,19 @@
         android:singleLine="true"
         android:title="@string/pref_title_display_name" />
 
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
-
 
     <Preference
         android:key="test_jump"
-        android:title="test preference click jump"
-        android:summary="点我跳转到详情页面(临时跳转到广告页面)"/>
+        android:summary="点我跳转到详情页面(临时跳转到广告页面,设置点击事件可以任意跳转)"
+        android:title="test preference click jump" />
 
+    <Preference
+        android:fragment="com.step2hell.newsmth.ui.SettingsActivity$NotificationPreferenceFragment"
+        android:summary="点我跳转到详情页面(临时跳转到NotificationPreferenceFragment,设置fragment属性,只能跳转PreferenceFragment)"
+        android:title="test preference click jump 1" />
+
+    <Preference
+        android:fragment="com.step2hell.newsmth.ui.main.TestPreferenceFragment"
+        android:summary="点我跳转到详情页面(临时跳转到TestPreferenceFragment(偷个懒 内容和DataSyncPreferenceFragment一样),设置fragment属性,在isValidFragment方法中添加TestPreferenceFragment判断)"
+        android:title="test preference click jump 2" />
 </PreferenceScreen>

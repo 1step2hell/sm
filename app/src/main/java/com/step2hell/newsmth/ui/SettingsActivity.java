@@ -22,6 +22,7 @@ import android.view.MenuItem;
 
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.main.AdvActivity;
+import com.step2hell.newsmth.ui.main.TestPreferenceFragment;
 
 import java.util.List;
 
@@ -161,7 +162,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
                 || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || TestPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     /**
@@ -181,7 +183,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+
+            // 更好的设置summary方式: android:summary="%s"
+//            bindPreferenceSummaryToValue(findPreference(getString(R.string.visit_mode_key)));
 
             // test jump
             findPreference("test_jump").setOnPreferenceClickListener(this);
