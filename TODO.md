@@ -16,3 +16,5 @@
 6.  完善登录页面
 
 7.  主页数据
+
+8.  导入CI，github自动build & release，增加release下载页面（参考XX-net的release版本下载）
