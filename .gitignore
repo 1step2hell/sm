@@ -7,7 +7,6 @@
 /.idea
 /.gradle
 /gradle.properties
-/README.md
 /app/build
 /app/app.iml
 /test
