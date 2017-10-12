@@ -7,6 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html
         classpath 'com.android.tools.build:gradle:2.3.3'
 
         // NOTE: Do not place your application dependencies here; they belong
