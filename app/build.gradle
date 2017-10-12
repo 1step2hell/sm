@@ -20,6 +20,10 @@ android {
         enabled true
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     signingConfigs {
         step2hell {
             storeFile file('step2hell.jks')
