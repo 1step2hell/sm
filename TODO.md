@@ -22,3 +22,5 @@
 9.  完善readme.md
 
 10. 代码混淆proguard https://developer.android.com/studio/build/shrink-code.html
+
+11. 添加字体font
