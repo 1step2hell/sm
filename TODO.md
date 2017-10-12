@@ -9,4 +9,10 @@
 
 3.  Visit mode
 
-4.  
+4.  使用google api保存用户账号密码
+
+5.  添加recyclerview fastscrollenabled，滑动点击进入对应版块
+
+6.  完善登录页面
+
+7.  主页数据
