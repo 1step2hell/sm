@@ -60,6 +60,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//    splits {
+//        abi {
+//            enable = true
+//        }
+//        density {
+//            enable = true
+//            exclude "mdpi","hdpi","xhdpi","xxxhdpi"
+////            reset()
+////            include "xxhdpi", "ldpi"
+//        }
+//        language {
+//            enable = true
+//            include "zh", "en"
+//        }
+//    }
 }
 
 dependencies {
