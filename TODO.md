@@ -18,8 +18,14 @@
 14. Dagger2
 15. 翻页效果
 16. 各种icon android原生/material design/zSMTH About icon
-17. 每做一个东西就去github搜更酷炫的效果
+17. 每做一个东西就去github搜更酷炫的效果  
+    25 Android libraries you definitely want to try out in early 2017:  
+    http://www.toutiao.com/a6476595243335549454/
 18. 单元测试 自动化测试
 19. 长时间阅读休息提醒(加广告,无网络也加广告)
 20. nForum模式下图片4秒轮播
 21. 快捷操作 快速双击弹出dialog框(AppCompatDialogFragment),里边设置各种快捷键跳转
+22. 自升级功能 设置控制开关
+23. 启动icon自适应大小
+24. app shortcut
+25. android 8.0变化都用上
