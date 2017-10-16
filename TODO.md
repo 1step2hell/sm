@@ -12,7 +12,7 @@
 8.  导入CI，github自动build & release，增加release下载页面（参考XX-net的release版本下载）
 9.  完善readme.md
 10. 代码混淆proguard https://developer.android.com/studio/build/shrink-code.html
-11. 添加字体font
+11. 添加字体font,由于中文字体实在太大,后续采用Downloadable字体
 12. 盲人模式
 13. 下拉刷新
 14. Dagger2
