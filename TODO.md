@@ -16,7 +16,7 @@
 12. 盲人模式
 13. 下拉刷新
 14. Dagger2
-15. 翻页效果
+15. 翻页效果 贝塞尔曲线
 16. 各种icon android原生/material design/zSMTH About icon
 17. 每做一个东西就去github搜更酷炫的效果  
     25 Android libraries you definitely want to try out in early 2017:  
