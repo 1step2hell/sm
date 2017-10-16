@@ -29,3 +29,4 @@
 23. 启动icon自适应大小
 24. app shortcut
 25. android 8.0变化都用上
+26. 增加开关控制是否使用mobile流量,参考iphone的数据流量设置
