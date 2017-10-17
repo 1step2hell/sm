@@ -31,3 +31,4 @@
 25. android 8.0变化都用上
 26. 增加开关控制是否使用mobile流量,参考iphone的数据流量设置
 27. 使用PreferenceActivity导致没有继承BaseActivity而无法双击退出,替换成Activity+PreferenceFragment
+28. application里监听应用是否进入前后台

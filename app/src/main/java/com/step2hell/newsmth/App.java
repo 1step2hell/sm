@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import com.step2hell.newsmth.util.NetworkUtil;
 
 /**
+ * http://blog.csdn.net/qq284565035/article/details/51811590
  * http://www.developerphil.com/no-you-can-not-override-the-home-button-but-you-dont-have-to/
  */
 public class App extends Application {
