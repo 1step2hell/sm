@@ -1,52 +1,25 @@
 package com.step2hell.newsmth.ui;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.main.MainActivity;
-import com.step2hell.newsmth.util.NetworkUtil;
 import com.step2hell.newsmth.widget.TitleCenterInsideToolbar;
 
 public class BaseActivity extends AppCompatActivity {
 
 
-    /*------------------------------ Observe network ------------------------------*/
-
-    protected BroadcastReceiver connectivityReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (NetworkUtil.isNetworkConnected(context)) {
-                // Todo: network is connected, notify everybody with RxBus
-
-            } else {
-                // Todo: network is unconnected, notify everybody with RxBus
-
-            }
-        }
-    };
+    /*------------------------------ Set Orientation ------------------------------*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (connectivityReceiver != null) unregisterReceiver(connectivityReceiver);
     }
 
 
