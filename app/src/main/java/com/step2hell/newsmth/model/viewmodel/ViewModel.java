@@ -32,10 +32,6 @@ public class ViewModel {
     }
 
 
-    public Observable<AdvBean> fetchAdv() {
-        return DataModel.ADV.fetch();
-    }
-
     @BindingAdapter({"adv"})
     public static void setupAdv(final ImageView view, Observable<AdvBean> observable) {
         observable.subscribe(new Consumer<AdvBean>() {
