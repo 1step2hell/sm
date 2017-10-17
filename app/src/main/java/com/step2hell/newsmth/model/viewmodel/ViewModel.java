@@ -36,7 +36,7 @@ public class ViewModel {
         return DataModel.ADV.fetch();
     }
 
-    @BindingAdapter({"bind:adv"})
+    @BindingAdapter({"adv"})
     public static void setupAdv(final ImageView view, Observable<AdvBean> observable) {
         observable.subscribe(new Consumer<AdvBean>() {
             @Override
