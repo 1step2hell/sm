@@ -33,3 +33,9 @@
 27. 使用PreferenceActivity导致没有继承BaseActivity而无法双击退出,替换成Activity+PreferenceFragment
 28. application里监听应用是否进入前后台
 29. 权限申请
+30. java版本,kotlin版本,ios swift版本
+31. 附件打开
+    图片预览编辑
+    波形音乐播放器
+    videoview视频播放器
+    gif
