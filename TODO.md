@@ -49,3 +49,10 @@
 35. https://developer.android.google.cn/develop/index.html
 36. UI特效  
     http://www.toutiao.com/a6479707686098174477/
+37. Android Design  
+    Animation  https://material.io/guidelines/motion/material-motion.html
+    Style  https://material.io/guidelines/style/color.html
+    Layout  https://material.io/guidelines/layout/principles.html
+    Component  https://material.io/guidelines/components/bottom-navigation.html
+    Patterns  https://material.io/guidelines/patterns/confirmation-acknowledgement.html
+    Usability  https://material.io/guidelines/usability/accessibility.html
