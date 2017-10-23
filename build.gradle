@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         // https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html
-        classpath 'com.android.tools.build:gradle:3.0.0-rc1'
+        classpath 'com.android.tools.build:gradle:3.0.0-rc2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
