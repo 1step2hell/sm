@@ -39,3 +39,5 @@
     波形音乐播放器
     videoview视频播放器
     gif
+32. activity切换动画 ViewAnimationUtils.createCircularReveal()  
+    http://www.jianshu.com/p/4d7d9b4014bb
