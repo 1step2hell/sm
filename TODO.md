@@ -43,3 +43,9 @@
     http://www.jianshu.com/p/4d7d9b4014bb
 33. FloatingActionButton动画  
     https://github.com/Krupen/FabulousFilter
+34. Material Design  
+    https://developer.android.google.cn/design/index.html
+    https://material.io/
+35. https://developer.android.google.cn/develop/index.html
+36. UI特效  
+    http://www.toutiao.com/a6479707686098174477/
