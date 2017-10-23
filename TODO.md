@@ -41,3 +41,5 @@
     gif
 32. activity切换动画 ViewAnimationUtils.createCircularReveal()  
     http://www.jianshu.com/p/4d7d9b4014bb
+33. FloatingActionButton动画  
+    https://github.com/Krupen/FabulousFilter
