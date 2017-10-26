@@ -35,6 +35,7 @@ android {
             storePassword STORE_PASSWORD
             keyAlias 'step2hell'
             keyPassword KEY_PASSWORD
+            v2SigningEnabled true
         }
     }
 
