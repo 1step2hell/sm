@@ -56,3 +56,5 @@
     Component  https://material.io/guidelines/components/bottom-navigation.html
     Patterns  https://material.io/guidelines/patterns/confirmation-acknowledgement.html
     Usability  https://material.io/guidelines/usability/accessibility.html
+38. 终端使用gradle clean aR编译release包没有签上名  
+    jarsigner -verify -verbose -certs app_signed.apk
