@@ -28,7 +28,8 @@
 22. 自升级功能 设置控制开关
 23. 启动icon自适应大小
 24. app shortcut
-25. android 8.0变化都用上
+25. android 8.0变化都用上  
+    https://developer.android.com/about/versions/oreo/android-8.0.html
 26. 增加开关控制是否使用mobile流量,参考iphone的数据流量设置
 27. 使用PreferenceActivity导致没有继承BaseActivity而无法双击退出,替换成Activity+PreferenceFragment
 28. application里监听应用是否进入前后台
