@@ -57,5 +57,7 @@
     Component  https://material.io/guidelines/components/bottom-navigation.html
     Patterns  https://material.io/guidelines/patterns/confirmation-acknowledgement.html
     Usability  https://material.io/guidelines/usability/accessibility.html
-38. 终端使用gradle clean aR编译release包没有签上名  
-    jarsigner -verify -verbose -certs app_signed.apk
+38. ysmth 提供给水木网友另外一个选择吧，欢迎试用。 
+    app store链接: https://itunes.apple.com/app/id1262202744 
+    有人要安卓版， 
+    android 链接: http://m.app.mi.com/#page=detail&id=452653 
