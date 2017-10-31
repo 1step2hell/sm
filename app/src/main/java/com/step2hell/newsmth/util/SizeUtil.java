@@ -1,8 +1,40 @@
 package com.step2hell.newsmth.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
 public class SizeUtil {
+
+    public static int getScreenWidthPx(Activity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        return metrics.widthPixels;
+    }
+
+    public static int getScreenHeightPx(Activity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        return metrics.heightPixels;
+    }
+
+    // 测量尺寸以建适配文件夹sw<N>dp
+    public static int getScreenWidthDp(Activity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Log.d("SizeUtil","widthPixels:"+metrics.widthPixels);
+        Log.d("SizeUtil","density:"+metrics.density);
+        return Math.round(metrics.widthPixels / metrics.density);
+    }
+
+    public static int getScreenHeightDp(Activity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        return Math.round(metrics.heightPixels / metrics.density);
+    }
+
+
     public static int dp2px(Context context, int dp) {
         return Math.round(context.getResources().getDisplayMetrics().density * dp);
     }

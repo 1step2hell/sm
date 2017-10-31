@@ -61,3 +61,4 @@
     app store链接: https://itunes.apple.com/app/id1262202744 
     有人要安卓版， 
     android 链接: http://m.app.mi.com/#page=detail&id=452653 
+39. SVG动画
