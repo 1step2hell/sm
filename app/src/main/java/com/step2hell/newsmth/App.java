@@ -43,13 +43,11 @@ public class App extends Application {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        if (connectivityReceiver != null) unregisterReceiver(connectivityReceiver);
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        if (connectivityReceiver != null) unregisterReceiver(connectivityReceiver);
     }
 
 }
