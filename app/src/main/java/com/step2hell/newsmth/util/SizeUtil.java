@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 
 public class SizeUtil {
 
@@ -23,8 +24,8 @@ public class SizeUtil {
     public static int getScreenWidthDp(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        Log.d("SizeUtil","widthPixels:"+metrics.widthPixels);
-        Log.d("SizeUtil","density:"+metrics.density);
+        Log.d("SizeUtil", "widthPixels:" + metrics.widthPixels);
+        Log.d("SizeUtil", "density:" + metrics.density);
         return Math.round(metrics.widthPixels / metrics.density);
     }
 
@@ -37,6 +38,7 @@ public class SizeUtil {
 
     public static int dp2px(Context context, int dp) {
         return Math.round(context.getResources().getDisplayMetrics().density * dp);
+//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics()));
     }
 
     public static int px2dp(Context context, int px) {
@@ -46,6 +48,7 @@ public class SizeUtil {
 
     public static int sp2px(Context context, float sp) {
         return Math.round(context.getResources().getDisplayMetrics().scaledDensity * sp);
+//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics()));
     }
 
     public static int px2sp(Context context, float px) {
