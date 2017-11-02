@@ -62,7 +62,7 @@
     有人要安卓版， 
     android 链接: http://m.app.mi.com/#page=detail&id=452653 
 39. SVG动画
-40. 下拉刷新 上拉加载  
+40. 下拉刷新 上拉加载, 参考View的mViewFlags来enable下拉或上拉，兼容兼容NestedScrolled机制，兼容各种滑动子view（isScrollable）
     http://www.jianshu.com/p/d23b42b6360b  
     http://blog.csdn.net/zhongkejingwang/article/details/38868463  
     http://blog.csdn.net/da_caoyuan/article/details/53324526?locationNum=9&fps=1
