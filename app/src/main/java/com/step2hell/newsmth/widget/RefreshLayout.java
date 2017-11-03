@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -392,10 +393,17 @@ public class RefreshLayout extends ViewGroup {
     }
 
     public boolean canChildScrollUp() {
-        if (mTarget instanceof ListView) {
-            return ListViewCompat.canScrollList((ListView) mTarget, -1);
+        if (android.os.Build.VERSION.SDK_INT < 14) {
+            if (mTarget instanceof AbsListView) {
+                final AbsListView absListView = (AbsListView) mTarget;
+                return absListView.getChildCount() > 0
+                        && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0).getTop() < absListView.getPaddingTop());
+            }else {
+                return mTarget.getScrollY() > 0;
+            }
+        } else {
+            return mTarget.canScrollVertically(-1);
         }
-        return mTarget.canScrollVertically(-1);
     }
 
     public boolean isRefreshing() {
