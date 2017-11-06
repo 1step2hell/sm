@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
  * Be careful of the difference between NetworkInfo.isConnected() and NetworkInfo.isAvailable().
  * NetworkInfo is available doesn't mean network is connected, it's only a possibility.
  * Connected => Available, Available ≠> Connected.
+ * Connected ≠> can pass data, it is possible to establish connections and pass data.
  */
 public class NetworkUtil {
 
