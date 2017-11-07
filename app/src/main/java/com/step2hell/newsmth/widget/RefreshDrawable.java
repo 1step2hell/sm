@@ -22,7 +22,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
@@ -37,8 +36,10 @@ import java.util.ArrayList;
 
 /**
  * Fancy progress indicator for Material theme.
+ *
+ * @hide
  */
-class RefreshDrawable extends Drawable implements Animatable {
+public class RefreshDrawable extends Drawable implements Animatable {
     private static final Interpolator LINEAR_INTERPOLATOR = new LinearInterpolator();
     private static final Interpolator END_CURVE_INTERPOLATOR = new EndCurveInterpolator();
     private static final Interpolator START_CURVE_INTERPOLATOR = new StartCurveInterpolator();
@@ -118,7 +119,6 @@ class RefreshDrawable extends Drawable implements Animatable {
     private static final int SHADOW_ELEVATION = 4;
 
     private Resources mResources;
-    private View mParent;
     private Animation mAnimation;
     private float mRotationCount;
     private double mWidth;
@@ -130,8 +130,11 @@ class RefreshDrawable extends Drawable implements Animatable {
     private int mTop;
     private int mDiameter;
 
-    public RefreshDrawable(Context context, RefreshLayout parent) {
-        mParent = parent;
+    private Context mContext;
+    private RefreshLayout mParent;
+
+    public RefreshDrawable(Context context) {
+        mContext = context;
         mResources = context.getResources();
 
         mRing = new Ring(mCallback);
@@ -142,12 +145,11 @@ class RefreshDrawable extends Drawable implements Animatable {
         createCircleDrawable();
         setBackgroundColor(CIRCLE_BG_LIGHT);
         mDiameter = dp2px(40);
-        mTop = -mDiameter - (parent.getFinalOffset() - mDiameter) / 2;
     }
 
     private void createCircleDrawable() {
         float radius = CIRCLE_DIAMETER / 2;
-        final float density = mResources.getDisplayMetrics().density;
+        final float density = mContext.getResources().getDisplayMetrics().density;
         final int diameter = (int) (radius * density * 2);
         final int shadowYOffset = (int) (density * Y_OFFSET);
         final int shadowXOffset = (int) (density * X_OFFSET);
@@ -184,8 +186,8 @@ class RefreshDrawable extends Drawable implements Animatable {
 
         @Override
         public void draw(Canvas canvas, Paint paint) {
-            final int x = RefreshDrawable.this.getBounds().centerX();
-            final int y = RefreshDrawable.this.getBounds().centerY();
+            final int x = getBounds().centerX();
+            final int y = getBounds().centerY();
             canvas.drawCircle(x, y, (mCircleDiameter / 2 + mShadowRadius),
                     mShadowPaint);
             canvas.drawCircle(x, y, (mCircleDiameter / 2), paint);
@@ -275,6 +277,10 @@ class RefreshDrawable extends Drawable implements Animatable {
         setProgressRotation(rotation);
     }
 
+    public void setRefreshLayout(RefreshLayout refreshLayout){
+        mParent= refreshLayout;
+    }
+
     /**
      * Set the colors used in the progress animation from color resources.
      * The first color will also be the color of the bar that grows in response
@@ -291,16 +297,6 @@ class RefreshDrawable extends Drawable implements Animatable {
         mTop += offset;
         invalidateSelf();
     }
-//
-//    @Override
-//    public int getIntrinsicHeight() {
-//        return (int) mHeight;
-//    }
-//
-//    @Override
-//    public int getIntrinsicWidth() {
-//        return (int) mWidth;
-//    }
 
     @Override
     public void draw(Canvas c) {
@@ -317,7 +313,7 @@ class RefreshDrawable extends Drawable implements Animatable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-
+        mTop = -mDiameter - (mParent.getFinalOffset() - mDiameter) / 2;
     }
 
     @Override
@@ -327,7 +323,7 @@ class RefreshDrawable extends Drawable implements Animatable {
     }
 
     private int dp2px(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mResources.getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mContext.getResources().getDisplayMetrics());
     }
 
     @Override

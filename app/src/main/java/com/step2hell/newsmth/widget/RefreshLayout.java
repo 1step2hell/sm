@@ -1,8 +1,6 @@
 package com.step2hell.newsmth.widget;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ListViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,11 +12,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
 import android.widget.ImageView;
-import android.widget.ListView;
-
-/**
- * Created by yangbo on 11/2/17.
- */
 
 public class RefreshLayout extends ViewGroup {
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
@@ -28,6 +21,7 @@ public class RefreshLayout extends ViewGroup {
 
     private View mTarget; // the target of the gesture
     private ImageView mRefreshView;
+    private RefreshDrawable mRefreshDrawable;
     private boolean mRefreshing = false;
     private boolean mIsBeingDragged;
 
@@ -42,12 +36,11 @@ public class RefreshLayout extends ViewGroup {
     private int mTotalDragDistance;
     private int mFrom;
     private boolean mNotify;
-    private OnRefreshListener mListener;
+    private OnRefreshListener mRefreshListener;
 
     public int mDurationToStartPosition;
     public int mDurationToCorrectPosition;
     private Interpolator mDecelerateInterpolator;
-    private RefreshDrawable mRefreshDrawable;
 
 
     public RefreshLayout(Context context) {
@@ -63,13 +56,15 @@ public class RefreshLayout extends ViewGroup {
         mDurationToCorrectPosition = defaultDuration;
         mSpinnerFinalOffset = mTotalDragDistance = dp2px(DRAG_MAX_DISTANCE);
 
-        mRefreshDrawable = new RefreshDrawable(getContext(), this);
+        mRefreshDrawable = new RefreshDrawable(context);
+        mRefreshDrawable.setRefreshLayout(this);
         mRefreshView = new ImageView(context);
         mRefreshView.setImageDrawable(mRefreshDrawable);
-        mRefreshView.setVisibility(View.GONE);
+        mRefreshView.setVisibility(GONE);
         addView(mRefreshView, 0);
+
         setWillNotDraw(false);
-        ViewCompat.setChildrenDrawingOrderEnabled(this, true);
+        setChildrenDrawingOrderEnabled(true);
     }
 
     @Override
@@ -98,8 +93,8 @@ public class RefreshLayout extends ViewGroup {
         int right = getPaddingRight();
         int bottom = getPaddingBottom();
 
-        mTarget.layout(left, top + mTarget.getTop(), left + width - right, top + height - bottom + mTarget.getTop());
         mRefreshView.layout(left, top, left + width - right, top + height - bottom);
+        mTarget.layout(left, top + mTarget.getTop(), left + width - right, top + mTarget.getTop() + height - bottom);
     }
 
     @Override
@@ -274,7 +269,7 @@ public class RefreshLayout extends ViewGroup {
         mAnimateToStartPosition.reset();
         mAnimateToStartPosition.setDuration(mDurationToStartPosition);
         mAnimateToStartPosition.setInterpolator(mDecelerateInterpolator);
-        mAnimateToStartPosition.setAnimationListener(mToStartListener);
+        mAnimateToStartPosition.setAnimationListener(mToStartAnimListener);
         mRefreshView.clearAnimation();
         mRefreshView.startAnimation(mAnimateToStartPosition);
     }
@@ -284,7 +279,7 @@ public class RefreshLayout extends ViewGroup {
         mAnimateToCorrectPosition.reset();
         mAnimateToCorrectPosition.setDuration(mDurationToCorrectPosition);
         mAnimateToCorrectPosition.setInterpolator(mDecelerateInterpolator);
-        mAnimateToCorrectPosition.setAnimationListener(mRefreshListener);
+        mAnimateToCorrectPosition.setAnimationListener(mRefreshAnimListener);
         mRefreshView.clearAnimation();
         mRefreshView.startAnimation(mAnimateToCorrectPosition);
     }
@@ -313,7 +308,7 @@ public class RefreshLayout extends ViewGroup {
         mRefreshDrawable.setPercent(mDragPercent * (1 - interpolatedTime));
     }
 
-    private Animation.AnimationListener mToStartListener = new Animation.AnimationListener() {
+    private Animation.AnimationListener mToStartAnimListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
             mRefreshDrawable.stop();
@@ -331,7 +326,7 @@ public class RefreshLayout extends ViewGroup {
         }
     };
 
-    private Animation.AnimationListener mRefreshListener = new Animation.AnimationListener() {
+    private Animation.AnimationListener mRefreshAnimListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
             mRefreshView.setVisibility(View.VISIBLE);
@@ -346,8 +341,8 @@ public class RefreshLayout extends ViewGroup {
             if (mRefreshing) {
                 mRefreshDrawable.start();
                 if (mNotify) {
-                    if (mListener != null) {
-                        mListener.onRefresh();
+                    if (mRefreshListener != null) {
+                        mRefreshListener.onRefresh();
                     }
                 }
             } else {
@@ -398,7 +393,7 @@ public class RefreshLayout extends ViewGroup {
                 final AbsListView absListView = (AbsListView) mTarget;
                 return absListView.getChildCount() > 0
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0).getTop() < absListView.getPaddingTop());
-            }else {
+            } else {
                 return mTarget.getScrollY() > 0;
             }
         } else {
@@ -430,6 +425,17 @@ public class RefreshLayout extends ViewGroup {
         }
     }
 
+    public void setRefreshDrawable(RefreshDrawable drawable) {
+        setRefreshing(false);
+        drawable.setRefreshLayout(this);
+        mRefreshDrawable = drawable;
+        mRefreshView.setImageDrawable(mRefreshDrawable);
+    }
+
+    public void setColorSchemeColors(int... colorSchemeColors) {
+        mRefreshDrawable.setColorSchemeColors(colorSchemeColors);
+    }
+
     public int getFinalOffset() {
         return mSpinnerFinalOffset;
     }
@@ -440,7 +446,7 @@ public class RefreshLayout extends ViewGroup {
     }
 
     public void setOnRefreshListener(OnRefreshListener listener) {
-        mListener = listener;
+        mRefreshListener = listener;
     }
 
     public static interface OnRefreshListener {
