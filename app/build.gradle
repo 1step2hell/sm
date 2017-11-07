@@ -100,6 +100,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraint"
     implementation "com.android.support:exifinterface:$rootProject.ext.support"
     implementation "com.android.support:support-compat:$rootProject.ext.support"
+    implementation "com.android.support:support-content:$rootProject.ext.support"
 
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
