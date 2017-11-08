@@ -70,3 +70,4 @@
     http://blog.csdn.net/zhongkejingwang/article/details/38868463  
     http://blog.csdn.net/da_caoyuan/article/details/53324526?locationNum=9&fps=1
     http://www.jianshu.com/p/670941c56ca6
+41. JetBrain IDE 到手第一件事情就是装个 ideaVim 插件
