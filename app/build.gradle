@@ -102,6 +102,8 @@ dependencies {
     implementation "com.android.support:support-compat:$rootProject.ext.support"
     implementation "com.android.support:support-content:$rootProject.ext.support"
 
+    implementation "org.jsoup:jsoup:$rootProject.ext.jsoup"
+
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
