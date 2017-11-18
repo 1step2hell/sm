@@ -74,3 +74,5 @@
 42. 编写Android Studio插件  
     http://blog.csdn.net/kong_gu_you_lan/article/details/52880722
 43. 建Theme App模板工程
+44. tensorflow lite android demo  
+    https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/java/demo
