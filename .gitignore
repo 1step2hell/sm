@@ -12,5 +12,5 @@
 /test
 *~
 /?
-/gradle
+/gradle/wrapper
 /gradlew*

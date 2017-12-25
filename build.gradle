@@ -1,17 +1,21 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: "config.gradle"
+apply from: "${rootDir}/gradle/config.gradle"
+apply plugin: "net.ltgt.errorprone"
 
 buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         // https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        // http://errorprone.info/
+        // https://plugins.gradle.org/plugin/net.ltgt.errorprone
+        classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.0.13"
     }
 }
 
@@ -25,4 +29,8 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+configurations.errorprone {
+    resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.1.2'
 }

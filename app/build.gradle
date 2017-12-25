@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: "launch.gradle"
+apply from: "${rootDir}/gradle/launch.gradle"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
