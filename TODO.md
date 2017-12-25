@@ -76,3 +76,5 @@
 43. 建Theme App模板工程
 44. tensorflow lite android demo  
     https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/java/demo
+45. 使用google云备份 BackupManager，参考Anysoftkeyboard
+46. 使用自动发布至google play的gradle脚本
