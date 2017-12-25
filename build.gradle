@@ -15,6 +15,7 @@ buildscript {
 
         // http://errorprone.info/
         // https://plugins.gradle.org/plugin/net.ltgt.errorprone
+        // https://github.com/tbroyer/gradle-errorprone-plugin
         classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.0.13"
     }
 }
