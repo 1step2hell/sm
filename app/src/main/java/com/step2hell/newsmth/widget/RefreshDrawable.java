@@ -331,6 +331,7 @@ public class RefreshDrawable extends Drawable implements Animatable {
         mRing.setAlpha(alpha);
     }
 
+    @Override
     public int getAlpha() {
         return mRing.getAlpha();
     }
@@ -395,6 +396,7 @@ public class RefreshDrawable extends Drawable implements Animatable {
     private void setupAnimators() {
         final Ring ring = mRing;
         final Animation finishRingAnimation = new Animation() {
+            @Override
             public void applyTransformation(float interpolatedTime, Transformation t) {
                 // shrink back down and complete a full rotation before starting other circles
                 // Rotation goes between [0..1].
