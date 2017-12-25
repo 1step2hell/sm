@@ -14,7 +14,7 @@ public class HtmlUtil {
         URLConnection connection = uri.openConnection();
         InputStream in = connection.getInputStream();
         byte[] buf = new byte[1024];
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         while ((in.read(buf, 0, buf.length)) > 0) {
             sb.append(new String(buf, "GBK"));
         }
