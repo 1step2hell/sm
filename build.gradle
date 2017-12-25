@@ -9,10 +9,12 @@ buildscript {
 }
 
 allprojects {
-    // https://developer.android.com/topic/libraries/support-library/setup.html
     repositories {
         google()
         jcenter()
+    }
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
 }
 
