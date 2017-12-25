@@ -25,6 +25,7 @@ public class NetworkUtil {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     public static boolean isWifiConnected(Context context){
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -34,6 +35,7 @@ public class NetworkUtil {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     public static boolean isMobileConnected(Context context){
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobileInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -91,6 +93,7 @@ public class NetworkUtil {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     public static boolean isWifiAvailable(Context context){
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -100,6 +103,7 @@ public class NetworkUtil {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     public static boolean isMobileAvailable(Context context){
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobileInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);

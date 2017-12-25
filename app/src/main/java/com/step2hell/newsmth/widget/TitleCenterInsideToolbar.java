@@ -73,6 +73,7 @@ public class TitleCenterInsideToolbar extends Toolbar {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setTitle(CharSequence title) {
         if (!TextUtils.isEmpty(title)) {
             if (mTitleTextView == null) {
@@ -144,6 +145,7 @@ public class TitleCenterInsideToolbar extends Toolbar {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setTitleTextAppearance(Context context, @StyleRes int resId) {
         mTitleTextAppearance = resId;
         if (mTitleTextView != null) {
