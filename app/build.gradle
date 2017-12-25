@@ -1,5 +1,11 @@
-apply plugin: 'com.android.application'
-apply from: "${rootDir}/gradle/launch.gradle"
+plugins {
+    id 'com.android.application'
+
+    // http://errorprone.info/
+    // https://plugins.gradle.org/plugin/net.ltgt.errorprone
+    // https://github.com/tbroyer/gradle-errorprone-plugin
+    id 'net.ltgt.errorprone' version '0.0.13'
+}
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,7 +18,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
     }
 
@@ -130,3 +136,5 @@ dependencies {
     releaseImplementation "com.github.markzhai:blockcanary-android:$rootProject.ext.blockcanary"
 
 }
+
+apply from: "${rootDir}/gradle/launch.gradle"
