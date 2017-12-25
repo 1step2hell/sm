@@ -14,6 +14,7 @@ import com.step2hell.newsmth.model.datamodel.DataModel;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 
@@ -33,8 +34,8 @@ public class ViewModel {
 
 
     @BindingAdapter({"adv"})
-    public static void setupAdv(final ImageView view, Observable<AdvBean> observable) {
-        observable.subscribe(new Consumer<AdvBean>() {
+    public static Disposable setupAdv(final ImageView view, Observable<AdvBean> observable) {
+        return observable.subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull final AdvBean bean) throws Exception {
                 Glide.with(view.getContext())
