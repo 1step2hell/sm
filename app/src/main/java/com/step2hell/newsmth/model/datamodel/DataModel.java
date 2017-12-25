@@ -19,6 +19,7 @@ public enum DataModel {
         private final static String URL_NEWSMTH = "http://www.newsmth.net/";
         private final static String REG_PREIMG = "preimg=\\[(.*?)\\]";
 
+        @Override
         public Observable<AdvBean> fetch() {
             return new Retrofit.Builder()
                     .baseUrl(URL_NEWSMTH)
