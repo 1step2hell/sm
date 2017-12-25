@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity {
     /**
      * 通过反射修改原生NavaigationView的divider（也可以不使用NavigationView，自己写个RecyclerView作为drawer）
      */
+    @SuppressWarnings("RestrictTo")
     private void setupNavigationDivider() {
 
         /**
