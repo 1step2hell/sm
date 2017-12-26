@@ -5,6 +5,10 @@ plugins {
     // https://plugins.gradle.org/plugin/net.ltgt.errorprone
     // https://github.com/tbroyer/gradle-errorprone-plugin
     id 'net.ltgt.errorprone' version '0.0.13'
+
+    // https://www.fabric.io/
+    // https://fabric.io/
+    id 'io.fabric'
 }
 
 android {
@@ -128,6 +132,10 @@ dependencies {
     implementation "com.github.bumptech.glide:gifdecoder:$rootProject.ext.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glide"
     implementation 'jp.wasabeef:glide-transformations:3.0.1'
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true;
+    }
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary"

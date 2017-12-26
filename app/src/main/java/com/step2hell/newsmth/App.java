@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
+import com.crashlytics.android.Crashlytics;
 import com.step2hell.newsmth.util.NetworkUtil;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * http://blog.csdn.net/qq284565035/article/details/51811590
@@ -31,6 +33,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
