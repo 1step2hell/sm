@@ -10,7 +10,7 @@ ext {
 
     // App dependencies
     junit               = '4.12'
-    support             = '27.0.0'
+    support             = '27.0.2'
     constraint          = '1.0.2'
     jsoup               = '1.11.1'
     rxjava              = '2.1.1'
