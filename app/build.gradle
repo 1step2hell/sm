@@ -95,6 +95,8 @@ dependencies {
     testImplementation "junit:junit:$rootProject.ext.junit"
     testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito"
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrest"
+    testImplementation "com.google.truth:truth:$rootProject.ext.truth"
+    testImplementation "com.google.truth.extensions:truth-java8-extension:$rootProject.ext.truth"
 
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runner"
     androidTestImplementation "com.android.support.test:rules:$rootProject.ext.rules"
