@@ -81,4 +81,5 @@
 47. 编写gradle task执行lint检测（gradle check）
 48. 集成crash收集（自己写或者fabric）
 49. 使用SoundPool播放各种操作提示铃声
+50. 所有png图片转成webp格式
 
