@@ -8,6 +8,7 @@ plugins {
 
     // https://www.fabric.io/
     // https://fabric.io/
+    // https://fabric.io/kits/android/crashlytics/install
     id 'io.fabric'
 }
 
@@ -51,9 +52,11 @@ android {
 
     buildTypes {
         debug {
+            manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"] // This is a Giphy API key, use this key while develop application and experiment with integrations.
             minifyEnabled false
         }
         release {
+            manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"] // Todo: request a production key.
             signingConfig signingConfigs.step2hell
             zipAlignEnabled true
             minifyEnabled false
@@ -135,8 +138,12 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glide"
     implementation 'jp.wasabeef:glide-transformations:3.0.1'
 
-    implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+    implementation("com.crashlytics.sdk.android:crashlytics:$rootProject.ext.fabric") {
         transitive = true;
+    }
+
+    implementation("com.giphy.sdk:core:$rootProject.ext.giphy") {
+        transitive = true
     }
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary"

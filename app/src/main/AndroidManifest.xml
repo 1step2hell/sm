@@ -31,6 +31,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="0cc780870c9a54afea6c67f780acb44bbc53d96c" />
+        <meta-data
+            android:name="@string/giphy_key"
+            android:value="${giphyKey}"/>
     </application>
 
 </manifest>
