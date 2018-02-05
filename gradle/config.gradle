@@ -28,5 +28,6 @@ ext {
     truth               = '0.37'
     fabric              = '2.8.0@aar'
     giphy               = '1.0.1@aar'
+    gifDrawable         = '1.2.10'
 
     }

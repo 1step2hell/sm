@@ -136,13 +136,12 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glide"
     implementation "com.github.bumptech.glide:gifdecoder:$rootProject.ext.glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glide"
-    implementation 'jp.wasabeef:glide-transformations:3.0.1'
 
     implementation("com.crashlytics.sdk.android:crashlytics:$rootProject.ext.fabric") {
         transitive = true;
     }
 
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    implementation "pl.droidsonroids.gif:android-gif-drawable:$rootProject.ext.gifDrawable"
     implementation("com.giphy.sdk:core:$rootProject.ext.giphy") {
         transitive = true
     }
