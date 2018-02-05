@@ -142,6 +142,7 @@ dependencies {
         transitive = true;
     }
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     implementation("com.giphy.sdk:core:$rootProject.ext.giphy") {
         transitive = true
     }
