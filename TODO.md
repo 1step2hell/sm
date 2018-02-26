@@ -84,4 +84,4 @@
 50. 所有png图片转成webp格式
 51. 集成Giphy
 52. 装饰者模式
-
+53. 用Android backup 备份设置和数据库com.google.android.backup.api_key
