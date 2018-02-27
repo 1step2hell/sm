@@ -23,8 +23,12 @@ import android.widget.FrameLayout;
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.ui.BaseActivity;
 import com.step2hell.newsmth.ui.SettingsActivity;
+import com.step2hell.newsmth.util.RxBus;
 
 import java.lang.reflect.Field;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Todo: MVVM, Design main page.
@@ -34,6 +38,8 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
+
+    private Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,22 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         mNavigationView.setItemIconTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorAccent)));
         setupNavigationDivider();
+
+        // Test Rxbus
+        RxBus.INSTANCE.publish(1);
+        disposable = RxBus.INSTANCE.listen(Integer.class).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                Log.e("Bob", "listen:" + integer);
+            }
+        });
+        RxBus.INSTANCE.publish(2);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!disposable.isDisposed()) disposable.dispose();
     }
 
     /**
