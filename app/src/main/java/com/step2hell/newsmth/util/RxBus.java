@@ -9,8 +9,8 @@ public enum RxBus {
         private final Subject<Object> subject = PublishSubject.create().toSerialized();
 
         @Override
-        public void publish(Object o) {
-            subject.onNext(o);
+        public <T> void publish(T t) {
+            subject.onNext(t);
         }
 
         @Override
@@ -19,7 +19,7 @@ public enum RxBus {
         }
     };
 
-    public void publish(Object o) {
+    public <T> void publish(T t) {
         throw new AbstractMethodError();
     }
 
