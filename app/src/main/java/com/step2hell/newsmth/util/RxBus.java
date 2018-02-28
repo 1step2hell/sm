@@ -1,6 +1,7 @@
 package com.step2hell.newsmth.util;
 
-import io.reactivex.Observable;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
@@ -14,8 +15,8 @@ public enum RxBus {
         }
 
         @Override
-        public <T> Observable<T> listen(Class<T> eventType) {
-            return subject.ofType(eventType);
+        public <T> Flowable<T> listen(Class<T> eventType) {
+            return subject.toFlowable(BackpressureStrategy.BUFFER).ofType(eventType);
         }
     };
 
@@ -23,7 +24,7 @@ public enum RxBus {
         throw new AbstractMethodError();
     }
 
-    public <T> Observable<T> listen(Class<T> eventType) {
+    public <T> Flowable<T> listen(Class<T> eventType) {
         throw new AbstractMethodError();
     }
 }
