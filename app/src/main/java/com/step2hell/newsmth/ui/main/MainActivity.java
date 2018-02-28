@@ -39,8 +39,6 @@ public class MainActivity extends BaseActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private Disposable disposable;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,19 +64,20 @@ public class MainActivity extends BaseActivity {
 
         // Test Rxbus
         RxBus.INSTANCE.publish(1);
-        disposable = RxBus.INSTANCE.listen(Integer.class).subscribe(new Consumer<Integer>() {
+        Disposable disposable = RxBus.INSTANCE.listen(Integer.class).subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
                 Log.e("Bob", "listen:" + integer);
             }
         });
+        RxBus.INSTANCE.registerBus(this,disposable);
         RxBus.INSTANCE.publish(2);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (!disposable.isDisposed()) disposable.dispose();
+        RxBus.INSTANCE.unregisterBus(this);
     }
 
     /**
