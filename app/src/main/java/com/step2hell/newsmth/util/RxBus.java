@@ -28,21 +28,21 @@ public enum RxBus {
         @Override
         public <T> void registerBus(T t, Disposable d) {
             String key = t.getClass().getName();
-            if (subscriptionMap.get(key) != null){
+            if (subscriptionMap.get(key) != null) {
                 subscriptionMap.get(key).add(d);
-            }else{
+            } else {
                 CompositeDisposable disposables = new CompositeDisposable();
                 disposables.add(d);
-                subscriptionMap.put(key,disposables);
+                subscriptionMap.put(key, disposables);
             }
         }
 
         @Override
         public <T> void unregisterBus(T t) {
             String key = t.getClass().getName();
-            if (subscriptionMap.containsKey(key)){
+            if (subscriptionMap.containsKey(key)) {
                 CompositeDisposable disposables = subscriptionMap.get(key);
-                if (disposables !=null) disposables.dispose();
+                if (disposables != null) disposables.dispose();
                 subscriptionMap.remove(key);
             }
         }
@@ -56,11 +56,11 @@ public enum RxBus {
         throw new AbstractMethodError();
     }
 
-    public <T> void registerBus(T t, Disposable d){
+    public <T> void registerBus(T t, Disposable d) {
         throw new AbstractMethodError();
     }
 
-    public <T> void unregisterBus(T t){
+    public <T> void unregisterBus(T t) {
         throw new AbstractMethodError();
     }
 }
