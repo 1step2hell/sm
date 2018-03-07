@@ -1,6 +1,7 @@
 package com.step2hell.newsmth.model.viewmodel;
 
 import android.databinding.BindingAdapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -52,6 +53,11 @@ public class ViewModel {
                         Toast.makeText(view.getContext(), bean.getUrl(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                Log.e(this.getClass().getSimpleName(),"setupAdv:"+throwable.getMessage());
             }
         });
     }
