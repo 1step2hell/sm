@@ -45,7 +45,7 @@ android {
     signingConfigs {
         step2hell {
             storeFile file('step2hell.jks')
-            storePassword STORE_PASSWORD
+            storePassword STORE_PASSWORD // config password in file gradle.properties(has been added into gitignore), do not upload into repo for security.
             keyAlias 'step2hell'
             keyPassword KEY_PASSWORD
             v2SigningEnabled true
