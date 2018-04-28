@@ -25,6 +25,8 @@ android {
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
+
+        manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"]
     }
 
     dataBinding {
@@ -52,11 +54,9 @@ android {
 
     buildTypes {
         debug {
-            manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"] // This is a Giphy API key, use this key while develop application and experiment with integrations.
             minifyEnabled false
         }
         release {
-            manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"] // Todo: request a production key.
             signingConfig signingConfigs.step2hell
             zipAlignEnabled true
             minifyEnabled false
