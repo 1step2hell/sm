@@ -8,6 +8,8 @@ ext {
     versionCode         = 2017100101    // versionCode ∈ [-2^31,2^31-1]
     versionName         = '0.0.0'       // http://semver.org/
 
+    gradleVer           = '3.2.0-alpha14'
+
     // App dependencies
     junit               = '4.12'
     support             = '27.0.2'
