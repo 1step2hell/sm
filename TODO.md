@@ -86,3 +86,6 @@
 52. 装饰者模式
 53. 用Android backup 备份设置和数据库com.google.android.backup.api_key
 54. UncaughtExceptionHandler接口
+55. 查看是否有可用的技术  
+    https://developer.android.google.cn/guide/
+56. kotlin、JetPack、MVVM、Dagger、RxJava、glide
