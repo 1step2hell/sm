@@ -2,7 +2,7 @@ ext {
     // sdk and tools
     compileSdkVer       = 27
     buildToolsVer       = '27.0.3'
-    applicationId       = "com.step2hell.newsmth"
+    appId               = "com.step2hell.newsmth"
     minSdkVer           = 21
     targetSdkVer        = 27
     versionCode         = 2017100101    // versionCode ∈ [-2^31,2^31-1]

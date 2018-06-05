@@ -12,7 +12,7 @@ android {
     buildToolsVersion buildToolsVer
 
     defaultConfig {
-        applicationId applicationId
+        applicationId appId
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
         versionCode versionCode
