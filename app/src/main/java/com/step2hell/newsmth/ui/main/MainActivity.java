@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
                 Log.e("Bob", "listen:" + integer);
             }
         });
-        RxBus.INSTANCE.registerBus(this,disposable);
+        RxBus.INSTANCE.registerBus(this, disposable);
         RxBus.INSTANCE.publish(2);
     }
 
@@ -140,9 +140,9 @@ public class MainActivity extends BaseActivity {
                 }
             });
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Log.e("Bob", "IllegalAccessException:" + e.getMessage());
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            Log.e("Bob", "NoSuchFieldException:" + e.getMessage());
         }
     }
 

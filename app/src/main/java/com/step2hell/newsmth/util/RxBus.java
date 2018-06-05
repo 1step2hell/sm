@@ -8,6 +8,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.processors.FlowableProcessor;
 import io.reactivex.processors.PublishProcessor;
 
+@SuppressWarnings("ImmutableEnumChecker")
 public enum RxBus {
     INSTANCE {
         private final FlowableProcessor<Object> processor = PublishProcessor.create().toSerialized();

@@ -18,7 +18,7 @@ public class CommonUtil {
             key = appInfo.metaData.getString(context.getString(R.string.giphy_key));
             Log.d("Bob", "Giphy key : " + key);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Log.e("Bob", "NameNotFoundException:" + e.getMessage());
         }
         return key;
     }
