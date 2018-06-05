@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.step2hell.newsmth.model.viewmodel.ViewModel" />
-
         <variable
             name="dataModel"
             type="com.step2hell.newsmth.model.datamodel.DataModel" />
@@ -27,7 +25,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="?attr/actionBarSize"
             android:background="@android:color/transparent"
-            app:adv="@{dataModel.ADV.fetch}"
+            android:src="@{dataModel.ADV.fetch}"
             app:layout_constraintDimensionRatio="4:3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

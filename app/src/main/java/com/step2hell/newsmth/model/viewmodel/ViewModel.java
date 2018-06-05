@@ -34,8 +34,8 @@ public class ViewModel {
     }
 
 
-    @BindingAdapter({"adv"})
-    public static Disposable setupAdv(final ImageView view, Observable<AdvBean> observable) {
+    @BindingAdapter("android:src")
+    public static Disposable setAdvImageSrc(final ImageView view, Observable<AdvBean> observable) {
         return observable.subscribe(new Consumer<AdvBean>() {
             @Override
             public void accept(@NonNull final AdvBean bean) throws Exception {
