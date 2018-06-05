@@ -24,6 +24,8 @@ android {
         manifestPlaceholders = [giphyKey: "Logw8R6FG2xKjxihEuq7GDeif7dDBawc"]
     }
 
+    // https://developer.android.google.cn/jetpack/arch/
+    // https://developer.android.google.cn/topic/libraries/data-binding/
     dataBinding {
         enabled true
     }
