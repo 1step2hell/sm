@@ -4,7 +4,7 @@ plugins {
     // http://errorprone.info/
     // https://plugins.gradle.org/plugin/net.ltgt.errorprone
     // https://github.com/tbroyer/gradle-errorprone-plugin
-    id 'net.ltgt.errorprone' version '0.0.13'
+    // id 'net.ltgt.errorprone' version '0.0.14'
 }
 
 android {
