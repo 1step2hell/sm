@@ -5,8 +5,8 @@ ext {
     appId               = "com.step2hell.newsmth"
     minSdkVer           = 21
     targetSdkVer        = 27
-    versionCode         = 2017100101    // versionCode ∈ [-2^31,2^31-1]
-    versionName         = '0.0.0'       // http://semver.org/
+    verCode             = 2017100101    // versionCode ∈ [-2^31,2^31-1]
+    verName             = '0.0.0'       // http://semver.org/
 
     gradleVer           = '3.2.0-alpha14'
 

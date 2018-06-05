@@ -15,8 +15,8 @@ android {
         applicationId appId
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode versionCode
-        versionName versionName
+        versionCode verCode
+        versionName verName
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
