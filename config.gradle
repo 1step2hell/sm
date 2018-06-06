@@ -18,6 +18,7 @@ ext {
     gson                = '2.8.4'
     rxjava              = '2.1.14'
     rxandroid           = '2.0.2'
+    autodispose         = '0.8.0'
     retrofit            = '2.4.0'
     okhttp              = '3.10.0'
     dagger              = '2.16'

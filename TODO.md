@@ -89,3 +89,4 @@
 55. 查看是否有可用的技术  
     https://developer.android.google.cn/guide/
 56. kotlin、JetPack、MVVM、Dagger、RxJava、glide
+57. 添加 RxBinding(MVP用，MVVM貌似用不着)、AutoDispose（比RxLifecycle更好）

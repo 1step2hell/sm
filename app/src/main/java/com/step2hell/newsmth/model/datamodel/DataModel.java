@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 
 public enum DataModel {
-    ADV{
+    ADV {
         private final static String URL_NEWSMTH = "http://www.newsmth.net/";
         private final static String REG_PREIMG = "preimg=\\[(.*?)\\]";
 
