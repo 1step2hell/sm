@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
         Disposable disposable = RxBus.INSTANCE.listen(Integer.class).subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
-                Log.e("Bob", "listen:" + integer);
+                Log.e("Bob", "MainActivity listen:" + integer);
             }
         });
         RxBus.INSTANCE.registerBus(this, disposable);
