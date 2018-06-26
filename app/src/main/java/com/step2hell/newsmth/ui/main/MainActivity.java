@@ -27,8 +27,11 @@ import com.step2hell.newsmth.util.RxBus;
 
 import java.lang.reflect.Field;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Todo: MVVM, Design main page.
@@ -64,10 +67,10 @@ public class MainActivity extends BaseActivity {
 
         // Test Rxbus
         RxBus.INSTANCE.publish(1);
-        Disposable disposable = RxBus.INSTANCE.listen(Integer.class).subscribe(new Consumer<Integer>() {
+        Disposable disposable = RxBus.INSTANCE.listen(Integer.class).observeOn(Schedulers.newThread()).subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
-                Log.e("Bob", "MainActivity listen:" + integer);
+                Log.e("Bob", "Thread:"+Thread.currentThread()+", MainActivity listen:" + integer);
             }
         });
         RxBus.INSTANCE.registerBus(this, disposable);
