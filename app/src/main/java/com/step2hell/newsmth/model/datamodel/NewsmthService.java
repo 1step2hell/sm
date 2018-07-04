@@ -5,7 +5,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 
 
-public interface INewsmth {
+public interface NewsmthService {
     @GET("/")
     Observable<ResponseBody> request();
 }

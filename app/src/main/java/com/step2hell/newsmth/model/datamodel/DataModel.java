@@ -2,6 +2,7 @@ package com.step2hell.newsmth.model.datamodel;
 
 import com.google.gson.Gson;
 import com.step2hell.newsmth.model.bean.AdvBean;
+import com.step2hell.newsmth.util.ApiServiceHelper;
 import com.step2hell.newsmth.util.HtmlUtil;
 
 import io.reactivex.Observable;
@@ -10,8 +11,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 
 public enum DataModel {
@@ -21,11 +20,8 @@ public enum DataModel {
 
         @Override
         public Observable<AdvBean> fetch() {
-            return new Retrofit.Builder()
-                    .baseUrl(URL_NEWSMTH)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
-                    .create(INewsmth.class)
+            return ApiServiceHelper.INSTANCE
+                    .createService(URL_NEWSMTH, NewsmthService.class)
                     .request()
                     .subscribeOn(Schedulers.newThread())
                     .map(new Function<ResponseBody, AdvBean>() {
