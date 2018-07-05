@@ -29,8 +29,7 @@ public enum ApiServiceHelper {
             Retrofit retrofit = retrofitMap.get(baseUrl);
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
-                        .client(new OkHttpClient.Builder()
-                                .build()) // Todo: cache/interceptor/ssl in client
+                        .client(HttpClient.INSTANCE.getClient())
                         .baseUrl(baseUrl)
                         .addConverterFactory(GsonConverterFactory.create()) // Todo: custom converter
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
