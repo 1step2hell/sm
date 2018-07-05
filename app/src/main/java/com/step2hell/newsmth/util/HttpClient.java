@@ -21,9 +21,7 @@ public enum HttpClient {
             if (client == null) {
                 OkHttpClient.Builder builder = new OkHttpClient.Builder();
                 if (BuildConfig.DEBUG) {
-                    HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-                    httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                    builder.addInterceptor(httpLoggingInterceptor);
+                    builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
                 }
                 builder.readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
                         .writeTimeout(WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
