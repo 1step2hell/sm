@@ -13,14 +13,14 @@ public enum ApiServiceHelper {
     INSTANCE {
 
         private HashMap<String, Retrofit> retrofitMap = new HashMap<>();
-        private SoftReference<HashMap<String, Object>> apiMapRefs = new SoftReference<>(new HashMap<String, Object>());
+        private SoftReference<HashMap<String, Object>> serviceMapRefs = new SoftReference<>(new HashMap<String, Object>());
 
         @Override
         public <T> T createService(String baseUrl, Class<T> service) {
-            T t = (T) apiMapRefs.get().get(baseUrl.concat(service.getName()));
+            T t = (T) serviceMapRefs.get().get(baseUrl.concat(service.getName()));
             if (t == null) {
                 t = buildRetrofitWithUrl(baseUrl).create(service);
-                apiMapRefs.get().put(baseUrl.concat(service.getName()), t);
+                serviceMapRefs.get().put(baseUrl.concat(service.getName()), t);
             }
             return t;
         }
