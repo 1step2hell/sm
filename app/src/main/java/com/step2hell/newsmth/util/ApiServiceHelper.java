@@ -2,7 +2,6 @@ package com.step2hell.newsmth.util;
 
 import com.google.gson.GsonBuilder;
 
-import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
 import retrofit2.Retrofit;
@@ -18,19 +17,19 @@ public enum ApiServiceHelper {
     INSTANCE {
 
         private HashMap<String, Retrofit> retrofitMap = new HashMap<>();
-        private SoftReference<HashMap<String, Object>> serviceMapRefs = new SoftReference<>(new HashMap<String, Object>());
+        private HashMap<String, Object> serviceMap = new HashMap<>();
 
         @Override
         public <T> T createService(String baseUrl, Class<T> service) {
-            T t = (T) serviceMapRefs.get().get(baseUrl.concat(service.getName()));
+            T t = (T) serviceMap.get(baseUrl.concat(service.getName()));
             if (t == null) {
-                t = buildRetrofitWithUrl(baseUrl).create(service);
-                serviceMapRefs.get().put(baseUrl.concat(service.getName()), t);
+                t = buildRetrofit(baseUrl).create(service);
+                serviceMap.put(baseUrl.concat(service.getName()), t);
             }
             return t;
         }
 
-        private Retrofit buildRetrofitWithUrl(String baseUrl) {
+        private Retrofit buildRetrofit(String baseUrl) {
             Retrofit retrofit = retrofitMap.get(baseUrl);
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
