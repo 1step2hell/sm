@@ -32,6 +32,11 @@
         <meta-data
             android:name="@string/giphy_key"
             android:value="${giphyKey}"/>
+
+        <!-- 支持的屏幕纵横比上限 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
     </application>
 
 </manifest>
