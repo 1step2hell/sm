@@ -13,6 +13,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
         maven { url 'https://giphy.bintray.com/giphy-sdk' }
     }
     tasks.withType(JavaCompile) {
