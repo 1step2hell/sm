@@ -28,21 +28,20 @@ public enum RxBus {
         @Override
         public <T> void registerBus(T t, Disposable d) {
             String key = t.getClass().getName();
-            if (map.get(key) != null) {
-                map.get(key).add(d);
-            } else {
-                CompositeDisposable disposables = new CompositeDisposable();
-                disposables.add(d);
-                map.put(key, disposables);
+            CompositeDisposable disposables = map.get(key);
+            if (disposables == null) {
+                disposables = new CompositeDisposable();
+                map.put(key,disposables);
             }
+            disposables.add(d);
         }
 
         @Override
         public <T> void unregisterBus(T t) {
             String key = t.getClass().getName();
-            if (map.containsKey(key)) {
-                CompositeDisposable disposables = map.get(key);
-                if (disposables != null) disposables.dispose();
+            CompositeDisposable disposables = map.get(key);
+            if (disposables != null) {
+                disposables.dispose();
                 map.remove(key);
             }
         }
