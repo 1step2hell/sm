@@ -1,5 +1,6 @@
 package com.step2hell.newsmth.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -20,16 +21,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.google.gson.Gson;
 import com.step2hell.newsmth.R;
+import com.step2hell.newsmth.model.bean.AdvBean;
+import com.step2hell.newsmth.model.datamodel.NewsmthService;
 import com.step2hell.newsmth.ui.BaseActivity;
 import com.step2hell.newsmth.ui.SettingsActivity;
+import com.step2hell.newsmth.util.ApiServiceHelper;
+import com.step2hell.newsmth.util.HtmlUtil;
 import com.step2hell.newsmth.util.RxBus;
+import com.step2hell.newsmth.widget.AdDialog;
 
 import java.lang.reflect.Field;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 /**
  * Todo: MVVM, Design main page.
@@ -40,12 +50,39 @@ public class MainActivity extends BaseActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbar();
         initDrawerNavigation();
+
+        ApiServiceHelper.INSTANCE
+                .createService("http://www.newsmth.net/", NewsmthService.class)
+                .request()
+                .subscribeOn(Schedulers.newThread())
+                .map(new Function<ResponseBody, AdvBean>() {
+                    @Override
+                    public AdvBean apply(@io.reactivex.annotations.NonNull ResponseBody responseBody) throws Exception {
+                        return new Gson().fromJson(HtmlUtil.getSubSimple(responseBody.string(), "preimg=\\[(.*?)\\]"), AdvBean.class);
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<AdvBean>() {
+                    @Override
+                    public void accept(AdvBean advBean) throws Exception {
+                        AdDialog adDialog = new AdDialog(MainActivity.this);
+                        adDialog.show();
+                        adDialog.setImage(advBean.getFile());
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
+
     }
 
     private void initDrawerNavigation() {
@@ -68,7 +105,7 @@ public class MainActivity extends BaseActivity {
         Disposable disposable = RxBus.INSTANCE.listen(Integer.class).observeOn(Schedulers.newThread()).subscribe(new Consumer<Integer>() {
             @Override
             public void accept(Integer integer) throws Exception {
-                Log.e("Bob", "Thread:"+Thread.currentThread()+", MainActivity listen:" + integer);
+                Log.e("Bob", "Thread:" + Thread.currentThread() + ", MainActivity listen:" + integer);
             }
         });
         RxBus.INSTANCE.registerBus(this, disposable);
