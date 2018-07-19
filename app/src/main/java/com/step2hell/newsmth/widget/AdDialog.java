@@ -15,9 +15,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.step2hell.newsmth.R;
+import com.step2hell.newsmth.model.bean.AdBean;
 
 public class AdDialog extends Dialog implements View.OnClickListener {
+
     private ImageView imageView;
+    private AdBean bean;
 
     public AdDialog(@NonNull Context context) {
         super(context);
@@ -41,7 +44,12 @@ public class AdDialog extends Dialog implements View.OnClickListener {
         setCancelable(false);
     }
 
-    public void setImage(String imageUrl) {
+    public void setAd(AdBean bean){
+        this.bean = bean;
+        loadImage(bean.getImage());
+    }
+
+    private void loadImage(String imageUrl) {
         Glide.with(getContext())
                 .load(imageUrl)
                 .apply(new RequestOptions()
@@ -59,7 +67,7 @@ public class AdDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.image:
                 // Todo :
-                Toast.makeText(getContext(),"Todo：点我进入广告详情页!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),bean.getArticle(),Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

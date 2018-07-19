@@ -12,8 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="12dp"
-        android:scaleType="fitCenter"
-        tools:src="@drawable/ad_default" />
+        android:scaleType="fitCenter" />
 
     <ImageView
         android:id="@+id/badge"

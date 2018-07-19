@@ -1,7 +1,7 @@
 package com.step2hell.newsmth.model.datamodel;
 
 import com.google.gson.Gson;
-import com.step2hell.newsmth.model.bean.AdvBean;
+import com.step2hell.newsmth.model.bean.AdBean;
 import com.step2hell.newsmth.util.ApiServiceHelper;
 import com.step2hell.newsmth.util.HtmlUtil;
 
@@ -19,22 +19,22 @@ public enum DataModel {
         private final static String REG_PREIMG = "preimg=\\[(.*?)\\]";
 
         @Override
-        public Observable<AdvBean> fetch() {
+        public Observable<AdBean> fetch() {
             return ApiServiceHelper.INSTANCE
                     .createService(URL_NEWSMTH, NewsmthService.class)
                     .request()
                     .subscribeOn(Schedulers.newThread())
-                    .map(new Function<ResponseBody, AdvBean>() {
+                    .map(new Function<ResponseBody, AdBean>() {
                         @Override
-                        public AdvBean apply(@NonNull ResponseBody responseBody) throws Exception {
-                            return new Gson().fromJson(HtmlUtil.getSubSimple(responseBody.string(), REG_PREIMG), AdvBean.class);
+                        public AdBean apply(@NonNull ResponseBody responseBody) throws Exception {
+                            return new Gson().fromJson(HtmlUtil.getSubSample(responseBody.string(), REG_PREIMG), AdBean.class);
                         }
                     })
                     .observeOn(AndroidSchedulers.mainThread());
         }
     };
 
-    public Observable<AdvBean> fetch() {
+    public Observable<AdBean> fetch() {
         throw new AbstractMethodError();
     }
 }

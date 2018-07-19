@@ -10,8 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.step2hell.newsmth.R;
-import com.step2hell.newsmth.model.bean.AdvBean;
-import com.step2hell.newsmth.model.datamodel.DataModel;
+import com.step2hell.newsmth.model.bean.AdBean;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -35,12 +34,12 @@ public class ViewModel {
 
 
     @BindingAdapter("android:src")
-    public static Disposable setAdvImageSrc(final ImageView view, Observable<AdvBean> observable) {
-        return observable.subscribe(new Consumer<AdvBean>() {
+    public static Disposable setAdvImageSrc(final ImageView view, Observable<AdBean> observable) {
+        return observable.subscribe(new Consumer<AdBean>() {
             @Override
-            public void accept(@NonNull final AdvBean bean) throws Exception {
+            public void accept(@NonNull final AdBean bean) throws Exception {
                 Glide.with(view.getContext())
-                        .load(bean.getFile())
+                        .load(bean.getImage())
                         .apply(new RequestOptions()
                                 .fitCenter()
                                 .placeholder(R.mipmap.ic_launcher)
@@ -50,7 +49,7 @@ public class ViewModel {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(view.getContext(), bean.getUrl(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), bean.getArticle(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

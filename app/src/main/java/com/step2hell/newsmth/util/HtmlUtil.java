@@ -22,7 +22,7 @@ public class HtmlUtil {
         return sb.toString();
     }
 
-    public static String getSubSimple(String soap, String rgex) {
+    public static String getSubSample(String soap, String rgex) {
         Pattern pattern = Pattern.compile(rgex);
         Matcher m = pattern.matcher(soap);
         while (m.find()) {

@@ -23,7 +23,7 @@ import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
 import com.step2hell.newsmth.R;
-import com.step2hell.newsmth.model.bean.AdvBean;
+import com.step2hell.newsmth.model.bean.AdBean;
 import com.step2hell.newsmth.model.datamodel.NewsmthService;
 import com.step2hell.newsmth.ui.BaseActivity;
 import com.step2hell.newsmth.ui.SettingsActivity;
@@ -62,19 +62,19 @@ public class MainActivity extends BaseActivity {
                 .createService("http://www.newsmth.net/", NewsmthService.class)
                 .request()
                 .subscribeOn(Schedulers.newThread())
-                .map(new Function<ResponseBody, AdvBean>() {
+                .map(new Function<ResponseBody, AdBean>() {
                     @Override
-                    public AdvBean apply(@io.reactivex.annotations.NonNull ResponseBody responseBody) throws Exception {
-                        return new Gson().fromJson(HtmlUtil.getSubSimple(responseBody.string(), "preimg=\\[(.*?)\\]"), AdvBean.class);
+                    public AdBean apply(@io.reactivex.annotations.NonNull ResponseBody responseBody) throws Exception {
+                        return new Gson().fromJson(HtmlUtil.getSubSample(responseBody.string(), "preimg=\\[(.*?)\\]"), AdBean.class);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<AdvBean>() {
+                .subscribe(new Consumer<AdBean>() {
                     @Override
-                    public void accept(AdvBean advBean) throws Exception {
+                    public void accept(AdBean adBean) throws Exception {
                         AdDialog adDialog = new AdDialog(MainActivity.this);
                         adDialog.show();
-                        adDialog.setImage(advBean.getFile());
+                        adDialog.setAd(adBean);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
