@@ -6,7 +6,6 @@
 .externalNativeBuild
 /.idea
 /.gradle
-/gradle.properties
 /app/build
 /app/app.iml
 /test
