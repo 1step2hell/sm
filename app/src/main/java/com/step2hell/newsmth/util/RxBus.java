@@ -47,19 +47,12 @@ public enum RxBus {
         }
     };
 
-    public <T> void publish(T t) {
-        throw new AbstractMethodError();
-    }
+    public abstract <T> void publish(T t);
 
-    public <T> Flowable<T> listen(Class<T> eventType) {
-        throw new AbstractMethodError();
-    }
+    public abstract <T> Flowable<T> listen(Class<T> eventType);
 
-    public <T> void registerBus(T t, Disposable d) {
-        throw new AbstractMethodError();
-    }
+    public abstract <T> void registerBus(T t, Disposable d);
 
-    public <T> void unregisterBus(T t) {
-        throw new AbstractMethodError();
-    }
+    public abstract <T> void unregisterBus(T t);
+
 }
