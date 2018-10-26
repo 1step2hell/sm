@@ -6,7 +6,7 @@ import android.os.Build;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
 
-public class ImageUtil {
+public final class ImageUtil {
     public static void setTint(Drawable drawable, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             DrawableCompat.setTint(drawable, color);

@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.step2hell.newsmth.R;
 
-public class CommonUtil {
+public final class CommonUtil {
 
     public static String getGiphyKey(Context context){
         String key = "";

@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 
-public class SizeUtil {
+public final class SizeUtil {
 
     public static int getScreenWidthPx() {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();

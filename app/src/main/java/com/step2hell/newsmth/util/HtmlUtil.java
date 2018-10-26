@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class HtmlUtil {
+public final class HtmlUtil {
 
     public static String getHTML(String url) throws Exception {
         URL uri = new URL(url);

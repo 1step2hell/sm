@@ -11,7 +11,7 @@ import android.net.NetworkInfo;
  * Connected => Available, Available ≠> Connected.
  * Connected ≠> can pass data, it is possible to establish connections and pass data.
  */
-public class NetworkUtil {
+public final class NetworkUtil {
 
 
     /*------------------------------ Section of NetworkInfo Connected ------------------------------*/
