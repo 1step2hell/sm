@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.step2hell.newsmth.R;
 import com.step2hell.newsmth.model.bean.AdBean;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -34,8 +34,8 @@ public class ViewModel {
 
 
     @BindingAdapter("android:src")
-    public static Disposable setAdvImageSrc(final ImageView view, Observable<AdBean> observable) {
-        return observable.subscribe(new Consumer<AdBean>() {
+    public static Disposable setAdvImageSrc(final ImageView view, Single<AdBean> single) {
+        return single.subscribe(new Consumer<AdBean>() {
             @Override
             public void accept(@NonNull final AdBean bean) throws Exception {
                 Glide.with(view.getContext())
