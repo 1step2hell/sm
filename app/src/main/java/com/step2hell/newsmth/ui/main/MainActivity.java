@@ -31,6 +31,7 @@ import com.step2hell.newsmth.util.ApiServiceHelper;
 import com.step2hell.newsmth.util.HtmlUtil;
 import com.step2hell.newsmth.util.RxBus;
 import com.step2hell.newsmth.widget.AdDialog;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.lang.reflect.Field;
 
@@ -83,6 +84,24 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
+        test();
+    }
+
+    private void test(){
+        // test Bugly.
+//        CrashReport.testJavaCrash();
+//        CrashReport.postCatchedException(new Throwable("Test manual post crash!"));
+
+        // Test Rxbus
+        RxBus.INSTANCE.publish(1);
+        Disposable disposable = RxBus.INSTANCE.listen(Integer.class).observeOn(Schedulers.newThread()).subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                Log.e("Bob", "Thread:" + Thread.currentThread() + ", MainActivity listen:" + integer);
+            }
+        });
+        RxBus.INSTANCE.registerBus(this, disposable);
+        RxBus.INSTANCE.publish(2);
     }
 
     private void initDrawerNavigation() {
@@ -99,17 +118,6 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         mNavigationView.setItemIconTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorAccent)));
         setupNavigationDivider();
-
-        // Test Rxbus
-        RxBus.INSTANCE.publish(1);
-        Disposable disposable = RxBus.INSTANCE.listen(Integer.class).observeOn(Schedulers.newThread()).subscribe(new Consumer<Integer>() {
-            @Override
-            public void accept(Integer integer) throws Exception {
-                Log.e("Bob", "Thread:" + Thread.currentThread() + ", MainActivity listen:" + integer);
-            }
-        });
-        RxBus.INSTANCE.registerBus(this, disposable);
-        RxBus.INSTANCE.publish(2);
     }
 
     @Override

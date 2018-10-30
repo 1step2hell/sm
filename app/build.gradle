@@ -87,6 +87,7 @@ android {
 //            include "zh", "en"
 //        }
 //    }
+
 }
 
 dependencies {
@@ -141,12 +142,15 @@ dependencies {
         transitive = true
     }
 
+    implementation "com.tencent.bugly:crashreport:$bugly"
+
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary"
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$leakcanary"
 
     debugImplementation "com.github.markzhai:blockcanary-android:$blockcanary"
     releaseImplementation "com.github.markzhai:blockcanary-android:$blockcanary"
 
 }
 
-apply from: "${rootDir}/launch.gradle"
+apply from: "${rootDir}/launch.gradle" 
