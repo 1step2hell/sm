@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuPresenter;
 import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,7 +32,6 @@ import com.step2hell.newsmth.util.ApiServiceHelper;
 import com.step2hell.newsmth.util.HtmlUtil;
 import com.step2hell.newsmth.util.RxBus;
 import com.step2hell.newsmth.widget.AdDialog;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.lang.reflect.Field;
 
@@ -46,10 +46,13 @@ import okhttp3.ResponseBody;
  * Todo: MVVM, Design main page.
  */
 public class MainActivity extends BaseActivity {
+    private final String TAG = "MainActivity";
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
+    private FloatingActionButton mFab;
+
 
     @SuppressLint("CheckResult")
     @Override
@@ -58,6 +61,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         setupToolbar();
         initDrawerNavigation();
+        initFab();
 
         ApiServiceHelper.INSTANCE
                 .createService("http://www.newsmth.net/", NewsmthService.class)
@@ -118,6 +122,16 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         mNavigationView.setItemIconTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorAccent)));
         setupNavigationDivider();
+    }
+
+    private void initFab(){
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TestLeakCanaryActivity.class));
+            }
+        });
     }
 
     @Override

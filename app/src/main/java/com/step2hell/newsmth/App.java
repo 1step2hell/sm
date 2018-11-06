@@ -8,8 +8,6 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
 import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
-import com.step2hell.newsmth.service.LeakUploadService;
 import com.step2hell.newsmth.util.NetworkUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 
@@ -35,16 +33,16 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-
         // init LeakCanary
-//        LeakCanary.install(this); // replace with custom service
-        RefWatcher refWatcher = LeakCanary.refWatcher(this)
-                .listenerServiceClass(LeakUploadService.class)
-                .buildAndInstall();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
 
         // init Bugly
         CrashReport.initCrashReport(getApplicationContext(), "bec105b4fe", BuildConfig.DEBUG);
+
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
