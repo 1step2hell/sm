@@ -41,10 +41,18 @@ android {
 
     signingConfigs {
         step2hell {
+            // 配置在环境变量
+//            storeFile file("${rootDir}/step2hell.jks")
+//            storePassword System.getenv('ANDROID_STORE_PWD')
+//            keyAlias 'step2hell'
+//            keyPassword System.getenv('ANDROID_KEY_PWD')
+//            v2SigningEnabled true
+
+            // 配置在 ~/.gradle/gradle.properties
             storeFile file("${rootDir}/step2hell.jks")
-            storePassword System.getenv('ANDROID_STORE_PWD')
+            storePassword ANDROID_STORE_PWD
             keyAlias 'step2hell'
-            keyPassword System.getenv('ANDROID_KEY_PWD')
+            keyPassword ANDROID_KEY_PWD
             v2SigningEnabled true
         }
     }
