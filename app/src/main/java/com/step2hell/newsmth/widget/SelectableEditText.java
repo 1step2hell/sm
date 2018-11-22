@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.Selection;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,8 +51,7 @@ public class SelectableEditText extends AppCompatEditText {
         mListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                setText(mDataArr[position]);
-                setSelection(getText().length());
+                replaceText(mDataArr[position]);
                 mListPopupWindow.dismiss();
             }
         });
@@ -64,9 +65,7 @@ public class SelectableEditText extends AppCompatEditText {
         } else {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_UP:
-                    if ((mDrawableRight != null)
-                            && (mListPopupWindow != null)
-                            && !mListPopupWindow.isShowing()) {
+                    if ((mListPopupWindow != null) && !mListPopupWindow.isShowing()) {
                         hideSoftInput();
                         mListPopupWindow.show();
                         mListPopupWindow.getListView().setOverScrollMode(View.OVER_SCROLL_ALWAYS);
@@ -77,9 +76,17 @@ public class SelectableEditText extends AppCompatEditText {
         }
     }
 
-    private void hideSoftInput() {
+    protected void hideSoftInput() {
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
+    }
+
+    protected void replaceText(CharSequence text) {
+        clearComposingText();
+        setText(text);
+        // make sure we keep the caret at the end of the text view
+        Editable spannable = getText();
+        Selection.setSelection(spannable, spannable.length());
     }
 
     public void setListData(String[] datas) {
