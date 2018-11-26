@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * https://www.jianshu.com/p/308f3c54abdd
+ * https://www.jianshu.com/p/be4007f8eac7
  */
 @SuppressWarnings({"unchecked", "ImmutableEnumChecker"})
 public enum ApiServiceHelper {
