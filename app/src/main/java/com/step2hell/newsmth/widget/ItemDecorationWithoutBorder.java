@@ -9,12 +9,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
 
-public class ItemDecorationWithoutLastDivider extends RecyclerView.ItemDecoration {
+public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int VERTICAL = LinearLayout.VERTICAL;
@@ -28,7 +30,7 @@ public class ItemDecorationWithoutLastDivider extends RecyclerView.ItemDecoratio
     private final Rect bounds = new Rect();
 
 
-    public ItemDecorationWithoutLastDivider(Context context, int orientation) {
+    public ItemDecorationWithoutBorder(Context context, int orientation) {
         divider = new ColorDrawable(Color.parseColor("#EEEEEE"));
         dividerWidth = 1;
         setOrientation(orientation);
@@ -80,8 +82,15 @@ public class ItemDecorationWithoutLastDivider extends RecyclerView.ItemDecoratio
             right = parent.getWidth();
         }
 
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount - 1; i++) {
+        int childCount = parent.getChildCount();
+        RecyclerView.LayoutManager manager = parent.getLayoutManager();
+        int spanCount = 0;
+        if (manager instanceof GridLayoutManager) {
+            spanCount = ((GridLayoutManager) manager).getSpanCount();
+        } else if (manager instanceof LinearLayoutManager) {
+            spanCount = 1;
+        }
+        for (int i = 0; i < childCount - spanCount; i++) {
             final View child = parent.getChildAt(i);
             parent.getDecoratedBoundsWithMargins(child, bounds);
             final int bottom = bounds.bottom + Math.round(ViewCompat.getTranslationY(child));
@@ -108,13 +117,28 @@ public class ItemDecorationWithoutLastDivider extends RecyclerView.ItemDecoratio
         }
 
         final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount - 1; i++) {
-            final View child = parent.getChildAt(i);
-            parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
-            final int right = bounds.right + Math.round(ViewCompat.getTranslationX(child));
-            final int left = right - dividerWidth;
-            divider.setBounds(left, top, right, bottom);
-            divider.draw(canvas);
+        RecyclerView.LayoutManager manager = parent.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            int spanCount = ((GridLayoutManager) manager).getSpanCount();
+            for (int i = 0; i < childCount; i++) {
+                if ((i + 1) % spanCount != 0) {
+                    final View child = parent.getChildAt(i);
+                    parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
+                    final int right = bounds.right + Math.round(ViewCompat.getTranslationX(child));
+                    final int left = right - dividerWidth;
+                    divider.setBounds(left, top, right, bottom);
+                    divider.draw(canvas);
+                }
+            }
+        } else if (manager instanceof LinearLayoutManager) {
+            for (int i = 0; i < childCount - 1; i++) {
+                final View child = parent.getChildAt(i);
+                parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
+                final int right = bounds.right + Math.round(ViewCompat.getTranslationX(child));
+                final int left = right - dividerWidth;
+                divider.setBounds(left, top, right, bottom);
+                divider.draw(canvas);
+            }
         }
         canvas.restore();
     }
@@ -125,14 +149,31 @@ public class ItemDecorationWithoutLastDivider extends RecyclerView.ItemDecoratio
         RecyclerView.LayoutManager manager = parent.getLayoutManager();
         int count = manager.getItemCount();
         int index = manager.getPosition(view);
-        if (index != count - 1) {
+        if (manager instanceof GridLayoutManager) {
+            int spanCount = ((GridLayoutManager) manager).getSpanCount();
             if (orientation == VERTICAL) {
-                outRect.set(0, 0, 0, dividerWidth);
+                if (index + spanCount > count) {
+                    outRect.setEmpty();
+                } else {
+                    outRect.set(0, 0, 0, dividerWidth);
+                }
             } else {
-                outRect.set(0, 0, dividerWidth, 0);
+                if ((index + 1) % spanCount != 0) {
+                    outRect.set(0, 0, dividerWidth, 0);
+                } else {
+                    outRect.setEmpty();
+                }
             }
-        } else {
-            outRect.setEmpty();
+        } else if (manager instanceof LinearLayoutManager) {
+            if (index != count - 1) {
+                if (orientation == VERTICAL) {
+                    outRect.set(0, 0, 0, dividerWidth);
+                } else {
+                    outRect.set(0, 0, dividerWidth, 0);
+                }
+            } else {
+                outRect.setEmpty();
+            }
         }
     }
 }
