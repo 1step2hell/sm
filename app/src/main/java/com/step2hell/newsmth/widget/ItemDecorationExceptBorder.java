@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
  * 目前仅支持{@link LinearLayoutManager}和{@link GridLayoutManager}
  * 不支持{@link StaggeredGridLayoutManager}以及自定义{@link RecyclerView.LayoutManager}
  */
-public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
+public class ItemDecorationExceptBorder extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int VERTICAL = LinearLayout.VERTICAL;
@@ -35,7 +35,7 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
     private final Rect bounds = new Rect();
 
 
-    public ItemDecorationWithoutBorder(Context context, int orientation) {
+    public ItemDecorationExceptBorder(Context context, int orientation) {
         divider = new ColorDrawable(Color.parseColor("#EEEEEE"));
         dividerWidth = 1;
         setOrientation(orientation);
