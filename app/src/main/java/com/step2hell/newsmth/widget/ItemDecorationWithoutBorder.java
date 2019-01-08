@@ -12,10 +12,15 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
-
+/**
+ * 不带边缘分割线的ItemDecoration
+ * 目前仅支持{@link LinearLayoutManager}和{@link GridLayoutManager}
+ * 不支持{@link StaggeredGridLayoutManager}以及自定义{@link RecyclerView.LayoutManager}
+ */
 public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
@@ -84,11 +89,14 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
 
         int childCount = parent.getChildCount();
         RecyclerView.LayoutManager manager = parent.getLayoutManager();
-        int spanCount = 0;
+        int spanCount;
         if (manager instanceof GridLayoutManager) {
             spanCount = ((GridLayoutManager) manager).getSpanCount();
         } else if (manager instanceof LinearLayoutManager) {
             spanCount = 1;
+        } else {
+            // StaggeredGridLayoutManager or other custom LayoutManager
+            spanCount = 0;
         }
         for (int i = 0; i < childCount - spanCount; i++) {
             final View child = parent.getChildAt(i);
@@ -124,7 +132,7 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
                 if ((i + 1) % spanCount != 0) {
                     final View child = parent.getChildAt(i);
                     parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
-                    final int right = bounds.right + Math.round(ViewCompat.getTranslationX(child));
+                    final int right = bounds.right + Math.round(child.getTranslationX());
                     final int left = right - dividerWidth;
                     divider.setBounds(left, top, right, bottom);
                     divider.draw(canvas);
@@ -134,7 +142,17 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
             for (int i = 0; i < childCount - 1; i++) {
                 final View child = parent.getChildAt(i);
                 parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
-                final int right = bounds.right + Math.round(ViewCompat.getTranslationX(child));
+                final int right = bounds.right + Math.round(child.getTranslationX());
+                final int left = right - dividerWidth;
+                divider.setBounds(left, top, right, bottom);
+                divider.draw(canvas);
+            }
+        } else {
+            // StaggeredGridLayoutManager or other custom LayoutManager
+            for (int i = 0; i < childCount; i++) {
+                final View child = parent.getChildAt(i);
+                parent.getLayoutManager().getDecoratedBoundsWithMargins(child, bounds);
+                final int right = bounds.right + Math.round(child.getTranslationX());
                 final int left = right - dividerWidth;
                 divider.setBounds(left, top, right, bottom);
                 divider.draw(canvas);
@@ -152,10 +170,10 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
         if (manager instanceof GridLayoutManager) {
             int spanCount = ((GridLayoutManager) manager).getSpanCount();
             if (orientation == VERTICAL) {
-                if (index + spanCount > count) {
-                    outRect.setEmpty();
-                } else {
+                if (index + spanCount < count) {
                     outRect.set(0, 0, 0, dividerWidth);
+                } else {
+                    outRect.setEmpty();
                 }
             } else {
                 if ((index + 1) % spanCount != 0) {
@@ -173,6 +191,13 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
                 }
             } else {
                 outRect.setEmpty();
+            }
+        } else {
+            // StaggeredGridLayoutManager or other custom LayoutManager
+            if (orientation == VERTICAL) {
+                outRect.set(0, 0, 0, dividerWidth);
+            } else {
+                outRect.set(0, 0, dividerWidth, 0);
             }
         }
     }
