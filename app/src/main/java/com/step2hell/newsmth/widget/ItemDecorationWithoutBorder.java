@@ -165,12 +165,14 @@ public class ItemDecorationWithoutBorder extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                RecyclerView.State state) {
         RecyclerView.LayoutManager manager = parent.getLayoutManager();
-        int count = manager.getItemCount();
+        int count = manager.getItemCount();     // 不等同于onDraw()使用的manager.getChildCount()
         int index = manager.getPosition(view);
         if (manager instanceof GridLayoutManager) {
             int spanCount = ((GridLayoutManager) manager).getSpanCount();
             if (orientation == VERTICAL) {
-                if (index + spanCount < count) {
+                int mod = count % spanCount;
+                int lastLineItemCount = mod == 0 ? spanCount : mod;
+                if (index + lastLineItemCount < count) {
                     outRect.set(0, 0, 0, dividerWidth);
                 } else {
                     outRect.setEmpty();
