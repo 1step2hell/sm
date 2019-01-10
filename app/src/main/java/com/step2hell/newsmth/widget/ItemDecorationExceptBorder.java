@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * 不带边缘分割线的ItemDecoration
@@ -26,6 +30,10 @@ public class ItemDecorationExceptBorder extends RecyclerView.ItemDecoration {
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int VERTICAL = LinearLayout.VERTICAL;
 
+    @IntDef({HORIZONTAL, VERTICAL})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface OrientationMode {}
+
     private Drawable divider;
 
     private int dividerWidth;
@@ -35,17 +43,17 @@ public class ItemDecorationExceptBorder extends RecyclerView.ItemDecoration {
     private final Rect bounds = new Rect();
 
 
-    public ItemDecorationExceptBorder(Context context, int orientation) {
+    public ItemDecorationExceptBorder(Context context) {
+        this(context, VERTICAL);
+    }
+
+    public ItemDecorationExceptBorder(Context context, @OrientationMode int orientation) {
         divider = new ColorDrawable(Color.parseColor("#EEEEEE"));
         dividerWidth = 1;
         setOrientation(orientation);
     }
 
-    public void setOrientation(int orientation) {
-        if (orientation != HORIZONTAL && orientation != VERTICAL) {
-            throw new IllegalArgumentException(
-                    "Invalid orientation. It should be either HORIZONTAL or VERTICAL");
-        }
+    public void setOrientation(@OrientationMode int orientation) {
         this.orientation = orientation;
     }
 
