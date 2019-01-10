@@ -25,7 +25,7 @@ import java.lang.annotation.RetentionPolicy;
  * 目前仅支持{@link LinearLayoutManager}和{@link GridLayoutManager}
  * 不支持{@link StaggeredGridLayoutManager}以及自定义{@link RecyclerView.LayoutManager}
  */
-public class ItemDecorationExceptBorder extends RecyclerView.ItemDecoration {
+public class ItemDecorationExcludeBorder extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int VERTICAL = LinearLayout.VERTICAL;
@@ -43,11 +43,11 @@ public class ItemDecorationExceptBorder extends RecyclerView.ItemDecoration {
     private final Rect bounds = new Rect();
 
 
-    public ItemDecorationExceptBorder(Context context) {
+    public ItemDecorationExcludeBorder(Context context) {
         this(context, VERTICAL);
     }
 
-    public ItemDecorationExceptBorder(Context context, @OrientationMode int orientation) {
+    public ItemDecorationExcludeBorder(Context context, @OrientationMode int orientation) {
         divider = new ColorDrawable(Color.parseColor("#EEEEEE"));
         dividerWidth = 1;
         setOrientation(orientation);
