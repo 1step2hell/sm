@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Window;
 
 public final class SizeUtil {
 
@@ -43,6 +44,19 @@ public final class SizeUtil {
         return Math.round(metrics.heightPixels / metrics.density);
     }
 
+    public static int getStatusBarHeightPx(Activity activity){
+        int statusBarHeight = 0;
+        // Todo
+        return statusBarHeight;
+    }
+
+    public static int getTitleBarHeightPx(Activity activity) {
+        Window window = activity.getWindow();
+        int decorTop = window.getDecorView().getTop();
+        int contentTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        int titleBarHeight = contentTop - decorTop;
+        return titleBarHeight;
+    }
 
     public static int dp2px(Context context, int dp) {
         return Math.round(context.getResources().getDisplayMetrics().density * dp);
