@@ -58,22 +58,22 @@ public final class SizeUtil {
         return titleBarHeight;
     }
 
-    public static int dp2px(Context context, int dp) {
-        return Math.round(context.getResources().getDisplayMetrics().density * dp);
-//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics()));
+    public static int dp2px(int dp) {
+        return Math.round(Resources.getSystem().getDisplayMetrics().density * dp);
+//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics()));
     }
 
-    public static int px2dp(Context context, int px) {
-        return Math.round(px / (context.getResources().getDisplayMetrics().density));
+    public static int px2dp(int px) {
+        return Math.round(px / (Resources.getSystem().getDisplayMetrics().density));
     }
 
 
-    public static int sp2px(Context context, float sp) {
-        return Math.round(context.getResources().getDisplayMetrics().scaledDensity * sp);
-//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics()));
+    public static int sp2px(float sp) {
+        return Math.round(Resources.getSystem().getDisplayMetrics().scaledDensity * sp);
+//        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics()));
     }
 
-    public static int px2sp(Context context, float px) {
-        return Math.round(px / (context.getResources().getDisplayMetrics().scaledDensity));
+    public static int px2sp(float px) {
+        return Math.round(px / (Resources.getSystem().getDisplayMetrics().scaledDensity));
     }
 }
