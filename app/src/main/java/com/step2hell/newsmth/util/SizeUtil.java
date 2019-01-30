@@ -44,7 +44,7 @@ public final class SizeUtil {
         return Math.round(metrics.heightPixels / metrics.density);
     }
 
-    public static int getStatusBarHeightPx(Activity activity){
+    public static int getStatusBarHeightPx(Activity activity) {
         int statusBarHeight = 0;
         // Todo
         return statusBarHeight;
@@ -76,4 +76,19 @@ public final class SizeUtil {
     public static int px2sp(float px) {
         return Math.round(px / (Resources.getSystem().getDisplayMetrics().scaledDensity));
     }
+
+    /**
+     * 获取不带单位的raw dimen值，eg:
+     * <item name="xx_width" format="float" type="dimen">32</item>
+     *
+     * 不能用于获取带单位的dimen，虽然也会有返回结果，但值是错误的！
+     * 带单位的dimen值应该用 context.getResources().getDimension(R.dimen.xx_width) 获取；
+     * 如果需要转换成pixel的整数，可使用context.getResources().getDimensionPixelSize(R.dimen.width)。
+     */
+    public static float getDimenRawValue(Context context, int resId) {
+        TypedValue outValue = new TypedValue();
+        context.getResources().getValue(resId, outValue, true);
+        return outValue.getFloat();
+    }
+
 }

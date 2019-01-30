@@ -9,7 +9,7 @@ import com.step2hell.newsmth.R;
 
 public final class CommonUtil {
 
-    public static String getGiphyKey(Context context){
+    public static String getGiphyKey(Context context) {
         String key = "";
         try {
             // included in tab <application/> of manifest.
@@ -21,5 +21,9 @@ public final class CommonUtil {
             Log.e("Bob", "NameNotFoundException:" + e.getMessage());
         }
         return key;
+    }
+
+    public static boolean isOdd(int i) {
+        return (i & 1) == 1;
     }
 }
